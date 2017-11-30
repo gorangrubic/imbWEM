@@ -27,7 +27,6 @@
 // Email: hardy@veles.rs
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
-
 namespace imbWEM.Core.crawler.rules.layerRules
 {
     using System.Collections.Generic;

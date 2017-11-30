@@ -27,7 +27,6 @@
 // Email: hardy@veles.rs
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
-
 namespace imbWEM.Core.crawler.evaluators.modular
 {
     using System.Collections.Generic;

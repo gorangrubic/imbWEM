@@ -11,6 +11,8 @@
     <AssemblyName>imbWEM.Mining</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +32,72 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net40\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net40\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net40\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net40\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bdev.Net.Dns, Version=1.0.4.0, Culture=neutral, PublicKeyToken=217d47f649bccd2c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bdev.Net.Dns.1.0.4\lib\Bdev.Net.Dns.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net40\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Core, Version=0.1.6541.17791, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Data, Version=0.1.6541.14062, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.10\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,5 +123,34 @@
     <Compile Include="pageTemplate\webTemplateContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Core\imbNLP.Core.csproj">
+      <Project>{f9d07efc-790d-4497-a81d-54b7c61eed07}</Project>
+      <Name>imbNLP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Data\imbNLP.Data.csproj">
+      <Project>{d4ea4257-315c-44e0-bb0c-3fc24ecb9ecd}</Project>
+      <Name>imbNLP.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Transliteration\imbNLP.Transliteration.csproj">
+      <Project>{dd2c4d78-77e8-480b-a0a2-b51a6bf3808e}</Project>
+      <Name>imbNLP.Transliteration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\imbWEM.Core\imbWEM.Core.csproj">
+      <Project>{1a76bf84-0f81-44e2-b5fc-441f48c6230d}</Project>
+      <Name>imbWEM.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
 </Project>

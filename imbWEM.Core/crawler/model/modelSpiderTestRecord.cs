@@ -28,8 +28,6 @@
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
 
-
-
 //using aceCommonTypes.extensions.text;
 
 namespace imbWEM.Core.crawler.model
