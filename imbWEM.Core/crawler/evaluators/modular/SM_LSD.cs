@@ -1,0 +1,108 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SM_LSD.cs" company="imbVeles" >
+//
+// Copyright (C) 2017 imbVeles
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// Project: imbWEM.Core
+// Author: Goran Grubic
+// ------------------------------------------------------------------------------------------------------------------
+// Project web site: http://blog.veles.rs
+// GitHub: http://github.com/gorangrubic
+// Mendeley profile: http://www.mendeley.com/profiles/goran-grubi2/
+// ORCID ID: http://orcid.org/0000-0003-2673-9471
+// Email: hardy@veles.rs
+// </summary>
+// ------------------------------------------------------------------------------------------------------------------
+
+namespace imbWEM.Core.crawler.evaluators.modular
+{
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Xml.Serialization;
+    using imbACE.Core.commands.menu;
+    using imbACE.Core.core;
+    using imbACE.Core.operations;
+    using imbACE.Services.console;
+    using imbACE.Services.terminal;
+    using imbNLP.Data;
+    using imbNLP.Data.extended.domain;
+    using imbNLP.Data.extended.unitex;
+    using imbNLP.Data.semanticLexicon.core;
+    using imbNLP.Data.semanticLexicon.explore;
+    using imbNLP.Data.semanticLexicon.morphology;
+    using imbNLP.Data.semanticLexicon.procedures;
+    using imbNLP.Data.semanticLexicon.source;
+    using imbNLP.Data.semanticLexicon.term;
+    using imbSCI.Core.attributes;
+    using imbSCI.Core.collection;
+    using imbSCI.Core.extensions.io;
+    using imbSCI.Core.extensions.text;
+    using imbSCI.Core.files.folders;
+    using imbSCI.Core.files.unit;
+    using imbSCI.Core.reporting;
+    using imbSCI.Data;
+    using imbSCI.Data.collection.nested;
+    using imbSCI.Data.data;
+    using imbSCI.Data.enums.reporting;
+    using imbSCI.DataComplex.data.modelRecords;
+    using imbSCI.DataComplex.extensions.data.formats;
+    using imbSCI.DataComplex.extensions.text;
+    using imbSCI.DataComplex.special;
+    using imbWEM.Core.crawler.model;
+    using imbWEM.Core.crawler.modules;
+    using imbWEM.Core.crawler.modules.implementation;
+    using imbWEM.Core.crawler.modules.performance;
+    using imbWEM.Core.crawler.rules.active;
+    using imbWEM.Core.crawler.targets;
+    using imbWEM.Core.directReport;
+    using imbWEM.Core.stage;
+
+    public class SM_LSD : spiderModularEvaluatorBase,ISpiderWithLanguageModule, ISpiderWithStructureModule, ISpiderWithDiversityModule
+    {
+        public SM_LSD(spiderUnit __parent)
+            : base("SM-LSD", "SM crawler with Language, Structure and Diversity frontier modules", "sm_lsd.md", __parent)
+        {
+           
+        }
+
+        public spiderRankingModuleBase module_diversity { get; set; }
+
+        public spiderLayerModuleBase module_language { get; set; }
+
+        public spiderLayerModuleBase module_structure { get; set; }
+
+        public basicLanguageEnum primaryLanguage { get; set; } = basicLanguageEnum.serbian;
+
+        public double pt_diversityFactor { get; set; }
+
+        public basicLanguageEnum secondaryLanguage { get; set; } = basicLanguageEnum.english;
+
+        public int termExpansionSteps { get; set; }
+
+        public double tt_diversityFactor { get; set; }
+
+        public override void setupAll()
+        {
+            module_language = modules.AddGet<spiderLayerModuleBase>(new languageModule(this, imbLanguageFrameworkManager.GetBasicLanguage(primaryLanguage), imbLanguageFrameworkManager.GetBasicLanguage(secondaryLanguage)));
+            //modules.Add(new templateModule(false, this));
+            module_structure = modules.AddGet(new structureModule(false, this));
+            module_diversity = modules.AddGet(new diversityModule(tt_diversityFactor, pt_diversityFactor, this, termExpansionSteps));
+        }
+    }
+
+}

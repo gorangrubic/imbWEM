@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A76BF84-0F81-44E2-B5FC-441F48C6230D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>imbWEM.Core</RootNamespace>
+    <AssemblyName>imbWEM.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>bin\Debug\imbWEM.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>imbWEM.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net40\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net40\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net40\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net40\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bdev.Net.Dns, Version=1.0.4.0, Culture=neutral, PublicKeyToken=217d47f649bccd2c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bdev.Net.Dns.1.0.4\lib\Bdev.Net.Dns.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net40\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="imbACE.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Core, Version=0.1.6541.17791, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Data, Version=0.1.6541.14062, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    </Reference>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.10\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="console\ACFolders.cs" />
+    <Compile Include="console\analyticConsole.cs" />
+    <Compile Include="console\analyticConsoleState.cs" />
+    <Compile Include="console\analyticConsoleWorkspace.cs" />
+    <Compile Include="console\nameComposer.cs" />
+    <Compile Include="console\plugins\plugIn_dataLoader.cs" />
+    <Compile Include="console\plugins\plugIn_dataLoaderIndexOperation.cs" />
+    <Compile Include="console\webSiteSimpleSample.cs" />
+    <Compile Include="crawler\core\ISpiderElement.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleBase.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleCollection.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleForLinkBase.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleForPageBase.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleResult.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleResultEnum.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleResultFlags.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleResultSet.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleRoleEnum.cs" />
+    <Compile Include="crawler\core\spiderEvalRuleSubjectEnum.cs" />
+    <Compile Include="crawler\core\spiderLayerDistributionResult.cs" />
+    <Compile Include="crawler\core\spiderLinkByFlagCollection.cs" />
+    <Compile Include="crawler\core\spiderPullDecayModes.cs" />
+    <Compile Include="crawler\core\spiderPullLoadTakeMode.cs" />
+    <Compile Include="crawler\core\spiderTask.cs" />
+    <Compile Include="crawler\core\spiderTaskResult.cs" />
+    <Compile Include="crawler\core\spiderTaskResultItem.cs" />
+    <Compile Include="crawler\core\templateResultColumn.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTask.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTaskCollection.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTaskIterationPhase.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTaskMachine.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTaskMachineSettings.cs" />
+    <Compile Include="crawler\engine\crawlerDomainTaskStatusEnum.cs" />
+    <Compile Include="crawler\engine\crawlerErrorEnum.cs" />
+    <Compile Include="crawler\engine\crawlerErrorLog.cs" />
+    <Compile Include="crawler\engine\crawlerSignature.cs" />
+    <Compile Include="crawler\engine\crawlJobEngineStageEnum.cs" />
+    <Compile Include="crawler\engine\crawlReportingStageEnum.cs" />
+    <Compile Include="crawler\engine\ICrawlerDomainTaskSerializable.cs" />
+    <Compile Include="crawler\engine\indexMaintenanceStageEnum.cs" />
+    <Compile Include="crawler\engine\iterationPerformanceRecord.cs" />
+    <Compile Include="crawler\engine\performanceCpu.cs" />
+    <Compile Include="crawler\engine\performanceDataLoad.cs" />
+    <Compile Include="crawler\engine\performanceDataLoadTake.cs" />
+    <Compile Include="crawler\engine\performanceRecord.cs" />
+    <Compile Include="crawler\engine\performanceResources.cs" />
+    <Compile Include="crawler\evaluators\basicSemanticSpider.cs" />
+    <Compile Include="crawler\evaluators\blindSpider.cs" />
+    <Compile Include="crawler\evaluators\breadthFirst.cs" />
+    <Compile Include="crawler\evaluators\deepScanner.cs" />
+    <Compile Include="crawler\evaluators\domainSemanticSpider.cs" />
+    <Compile Include="crawler\evaluators\hitsSpider.cs" />
+    <Compile Include="crawler\evaluators\indexCrawler.cs" />
+    <Compile Include="crawler\evaluators\ISpiderEvaluatorBase.cs" />
+    <Compile Include="crawler\evaluators\modular\ISpiderWithDiversityModule.cs" />
+    <Compile Include="crawler\evaluators\modular\ISpiderWithLanguageModule.cs" />
+    <Compile Include="crawler\evaluators\modular\ISpiderWithStructureModule.cs" />
+    <Compile Include="crawler\evaluators\modular\ISpiderWithTemplateModule.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LD.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LS.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LSD.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LT.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LTD.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LTS.cs" />
+    <Compile Include="crawler\evaluators\modular\SM_LTSD.cs" />
+    <Compile Include="crawler\evaluators\moduleCollection.cs" />
+    <Compile Include="crawler\evaluators\pageRankSpider.cs" />
+    <Compile Include="crawler\evaluators\spiderEvaluatorBase.cs" />
+    <Compile Include="crawler\evaluators\spiderEvaluatorExecutionFlags.cs" />
+    <Compile Include="crawler\evaluators\spiderEvaluatorSimpleBase.cs" />
+    <Compile Include="crawler\evaluators\spiderListCrawler.cs" />
+    <Compile Include="crawler\evaluators\spiderModularEvaluatorBase.cs" />
+    <Compile Include="crawler\evaluators\templateSpider.cs" />
+    <Compile Include="crawler\model\IMetaContentElement.cs" />
+    <Compile Include="crawler\model\IModelPageGlobals.cs" />
+    <Compile Include="crawler\model\IModelSiteGlobals.cs" />
+    <Compile Include="crawler\model\IModelSiteGlobalsWithReports.cs" />
+    <Compile Include="crawler\model\IModelSpiderGlobals.cs" />
+    <Compile Include="crawler\model\ISpiderTestRecordElement.cs" />
+    <Compile Include="crawler\model\modelSpiderPageRecord.cs" />
+    <Compile Include="crawler\model\modelSpiderSideFields.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteRecord.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteRecordDataSetEnum.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteRecordEvent.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteRecordEventArgs.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteRecordEventType.cs" />
+    <Compile Include="crawler\model\modelSpiderSiteTimelineEnum.cs" />
+    <Compile Include="crawler\model\modelSpiderTestRecord.cs" />
+    <Compile Include="crawler\model\modelSpiderTestRecordDataSetEnum.cs" />
+    <Compile Include="crawler\model\modelWebPageGeneralRecord.cs" />
+    <Compile Include="crawler\model\modelWebSiteGeneralRecord.cs" />
+    <Compile Include="crawler\model\moduleIterationRecordSummary.cs" />
+    <Compile Include="crawler\model\spiderEvaluatorCollection.cs" />
+    <Compile Include="crawler\model\spiderOperationHistory.cs" />
+    <Compile Include="crawler\modules\ElementList.cs" />
+    <Compile Include="crawler\modules\implementation\diversityModule.cs" />
+    <Compile Include="crawler\modules\implementation\languageModule.cs" />
+    <Compile Include="crawler\modules\implementation\spiderModuleTools.cs" />
+    <Compile Include="crawler\modules\implementation\structureModule.cs" />
+    <Compile Include="crawler\modules\implementation\templateModule.cs" />
+    <Compile Include="crawler\modules\ISpiderModuleBase.cs" />
+    <Compile Include="crawler\modules\ISpiderModuleData.cs" />
+    <Compile Include="crawler\modules\performance\frontierEntryCommonBase.cs" />
+    <Compile Include="crawler\modules\performance\frontierRankingAlgorithmDLCRecord.cs" />
+    <Compile Include="crawler\modules\performance\frontierRankingAlgorithmIterationRecord.cs" />
+    <Compile Include="crawler\modules\performance\moduleDLCRecord.cs" />
+    <Compile Include="crawler\modules\performance\moduleFinalOverview.cs" />
+    <Compile Include="crawler\modules\performance\moduleIterationRecord.cs" />
+    <Compile Include="crawler\modules\spiderControlModuleBase.cs" />
+    <Compile Include="crawler\modules\spiderLayerModuleBase.cs" />
+    <Compile Include="crawler\modules\spiderLayerModuleEvaluationRestPolicy.cs" />
+    <Compile Include="crawler\modules\spiderModuleBase.cs" />
+    <Compile Include="crawler\modules\spiderModuleData.cs" />
+    <Compile Include="crawler\modules\spiderRankingModuleBase.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderIteration.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderIterationHistory.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderPageAgregator.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderPageRow.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderSiteAgregator.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderSiteRow.cs" />
+    <Compile Include="crawler\reporting\dataUnits\dataUnitSpiderSiteView.cs" />
+    <Compile Include="crawler\reporting\diagramBuilderSpiderWeb.cs" />
+    <Compile Include="crawler\reporting\enums\templateFieldSpider.cs" />
+    <Compile Include="crawler\rules\active\rankDiversityALink.cs" />
+    <Compile Include="crawler\rules\active\rankHITS.cs" />
+    <Compile Include="crawler\rules\active\rankLinkXPath.cs" />
+    <Compile Include="crawler\rules\active\rankPageRank.cs" />
+    <Compile Include="crawler\rules\active\rankTargetUrlGraph.cs" />
+    <Compile Include="crawler\rules\active\ruleActiveBase.cs" />
+    <Compile Include="crawler\rules\active\ruleActiveCrossLink.cs" />
+    <Compile Include="crawler\rules\active\ruleActiveInflows.cs" />
+    <Compile Include="crawler\rules\active\ruleActiveLinkDepth.cs" />
+    <Compile Include="crawler\rules\active\ruleActiveLinkStructure.cs" />
+    <Compile Include="crawler\rules\controlLink\controlTrimScoreTail.cs" />
+    <Compile Include="crawler\rules\controlObjective\controlCrossLinks.cs" />
+    <Compile Include="crawler\rules\controlObjective\controlDisabler.cs" />
+    <Compile Include="crawler\rules\controlObjective\controlLsaSpike.cs" />
+    <Compile Include="crawler\rules\controlObjective\controlPageLoad.cs" />
+    <Compile Include="crawler\rules\controlObjective\controlTargetStability.cs" />
+    <Compile Include="crawler\rules\controlPage\controlPageCrossQ1.cs" />
+    <Compile Include="crawler\rules\control\controlLinkRuleBase.cs" />
+    <Compile Include="crawler\rules\control\controlObjectiveRuleBase.cs" />
+    <Compile Include="crawler\rules\control\controlPageRuleBase.cs" />
+    <Compile Include="crawler\rules\control\controlRuleBase.cs" />
+    <Compile Include="crawler\rules\control\controlRuleBaseBase.cs" />
+    <Compile Include="crawler\rules\control\IControlRuleBase.cs" />
+    <Compile Include="crawler\rules\core\IRuleActiveBase.cs" />
+    <Compile Include="crawler\rules\core\IRuleBase.cs" />
+    <Compile Include="crawler\rules\core\IRuleForPage.cs" />
+    <Compile Include="crawler\rules\core\IRuleForTarget.cs" />
+    <Compile Include="crawler\rules\layerRules\layerBlockRolePRule.cs" />
+    <Compile Include="crawler\rules\layerRules\layerDistributionActiveRuleBase.cs" />
+    <Compile Include="crawler\rules\layerRules\layerDistributionPassiveRuleBase.cs" />
+    <Compile Include="crawler\rules\layerRules\layerDistributionRuleBase.cs" />
+    <Compile Include="crawler\rules\layerRules\layerLanguageTFIDF_ARule.cs" />
+    <Compile Include="crawler\rules\layerRules\layerLexiconARule.cs" />
+    <Compile Include="crawler\rules\layerRules\layerNeedlePRule.cs" />
+    <Compile Include="crawler\rules\layerRules\layerTargetUrlGraph.cs" />
+    <Compile Include="crawler\rules\pagerules\pageruleCrosslinkScore.cs" />
+    <Compile Include="crawler\rules\pagerules\pageruleInboundScore.cs" />
+    <Compile Include="crawler\rules\pagerules\pageruleLinkScoreBonus.cs" />
+    <Compile Include="crawler\rules\pagerules\pageruleTitleKnownUniqueWords.cs" />
+    <Compile Include="crawler\rules\pagerules\pageruleTitleUnique.cs" />
+    <Compile Include="crawler\rules\passive\ruleDefaultScore.cs" />
+    <Compile Include="crawler\rules\passive\ruleFirstCaptionFound.cs" />
+    <Compile Include="crawler\rules\passive\ruleFirstPathAndFolderPath.cs" />
+    <Compile Include="crawler\rules\passive\ruleHasLanguageName.cs" />
+    <Compile Include="crawler\rules\passive\ruleIndexRelevance.cs" />
+    <Compile Include="crawler\rules\passive\ruleKnownWordInCaption.cs" />
+    <Compile Include="crawler\rules\passive\ruleRandomNoiseScore.cs" />
+    <Compile Include="crawler\rules\passive\ruleUrlHasKnownWords.cs" />
+    <Compile Include="crawler\rules\passive\ruleUrlTitleMatch.cs" />
+    <Compile Include="crawler\spiderSettings.cs" />
+    <Compile Include="crawler\spiderTools.cs" />
+    <Compile Include="crawler\spiderUnit.cs" />
+    <Compile Include="crawler\spiderWeb.cs" />
+    <Compile Include="crawler\spiderWebCollection.cs" />
+    <Compile Include="crawler\spiderWebFlags.cs" />
+    <Compile Include="crawler\spiderWebLoader.cs" />
+    <Compile Include="crawler\spiderWebLoaderControler.cs" />
+    <Compile Include="crawler\structure\contentHashAndAddressEntry.cs" />
+    <Compile Include="crawler\structure\contentHashAndAddressEntryList.cs" />
+    <Compile Include="crawler\structure\contentHashTypeEnum.cs" />
+    <Compile Include="crawler\structure\IWebRegistries.cs" />
+    <Compile Include="crawler\structure\linkDirection.cs" />
+    <Compile Include="crawler\structure\linknodeFrontierGraph.cs" />
+    <Compile Include="crawler\structure\relationShipCollection.cs" />
+    <Compile Include="crawler\structure\relationShipCounter.cs" />
+    <Compile Include="crawler\structure\spiderActiveLinks.cs" />
+    <Compile Include="crawler\structure\spiderLinkRelationType.cs" />
+    <Compile Include="crawler\structure\spiderWebLinkRegistry.cs" />
+    <Compile Include="crawler\structure\spiderWebLinkTargetRegistry.cs" />
+    <Compile Include="crawler\structure\spiderWebPageRegistry.cs" />
+    <Compile Include="crawler\structure\spiderWebPageRelationShips.cs" />
+    <Compile Include="crawler\structure\spiderWebStructureTools.cs" />
+    <Compile Include="crawler\structure\tripleLinkPageRegistry.cs" />
+    <Compile Include="crawler\targets\spiderDLContext.cs" />
+    <Compile Include="crawler\targets\spiderLink.cs" />
+    <Compile Include="crawler\targets\spiderPage.cs" />
+    <Compile Include="crawler\targets\spiderTarget.cs" />
+    <Compile Include="crawler\targets\spiderTargetCollection.cs" />
+    <Compile Include="crawler\targets\spiderTargetOnDomainTokenSet.cs" />
+    <Compile Include="crawler\targets\spiderTargetTokens.cs" />
+    <Compile Include="crawler\targets\spiderWebElementBase.cs" />
+    <Compile Include="crawler\targets\spiderWebElementStats.cs" />
+    <Compile Include="directReport\core\directReporterBase.cs" />
+    <Compile Include="directReport\data\folderNodeForInstances.cs" />
+    <Compile Include="directReport\data\instanceByIteration.cs" />
+    <Compile Include="directReport\data\instanceList.cs" />
+    <Compile Include="directReport\data\instanceName.cs" />
+    <Compile Include="directReport\data\iterationMatrix.cs" />
+    <Compile Include="directReport\data\textByIteration.cs" />
+    <Compile Include="directReport\directAnalyticReporter.cs" />
+    <Compile Include="directReport\directReporterTools.cs" />
+    <Compile Include="directReport\enums\DRFolderEnum.cs" />
+    <Compile Include="imbWEMManager.cs" />
+    <Compile Include="imbWEMManagerSettings.cs" />
+    <Compile Include="index\core\indexAssertionBase.cs" />
+    <Compile Include="index\core\indexDomain.cs" />
+    <Compile Include="index\core\indexDomainAssertionResult.cs" />
+    <Compile Include="index\core\indexDomainContentEnum.cs" />
+    <Compile Include="index\core\indexDomainTable.cs" />
+    <Compile Include="index\core\indexPageEvaluationDriveMode.cs" />
+    <Compile Include="index\core\indexPageEvaluationEntryState.cs" />
+    <Compile Include="index\core\indexPageTable.cs" />
+    <Compile Include="index\core\indexPageTableOperation.cs" />
+    <Compile Include="index\core\indexPerformanceEntry.cs" />
+    <Compile Include="index\core\indexPerformanceRecord.cs" />
+    <Compile Include="index\core\indexURLAssertionResult.cs" />
+    <Compile Include="index\experimentSession\experimentSessionEntry.cs" />
+    <Compile Include="index\experimentSession\experimentSessionRegistry.cs" />
+    <Compile Include="index\indexDatabaseStandalone.cs" />
+    <Compile Include="index\indexManager.cs" />
+    <Compile Include="plugins\collections\APlugInCollectionBase.cs" />
+    <Compile Include="plugins\collections\APlugInCollectionBaseCore.cs" />
+    <Compile Include="plugins\collections\IAPlugInCollectionBase.cs" />
+    <Compile Include="plugins\collections\pluginStackCollection.cs" />
+    <Compile Include="plugins\content\plugIn_base.cs" />
+    <Compile Include="plugins\content\plugIn_scopeGlobalBase.cs" />
+    <Compile Include="plugins\controlPlugIn_TCAutomatic.cs" />
+    <Compile Include="plugins\core\IPlugInCommonBase.cs" />
+    <Compile Include="plugins\core\IPlugInCommonBase_2.cs" />
+    <Compile Include="plugins\core\plugInGroupEnum.cs" />
+    <Compile Include="plugins\crawler\crawlerPlugInCollection.cs" />
+    <Compile Include="plugins\crawler\crawlerPlugIn_base.cs" />
+    <Compile Include="plugins\crawler\ICrawlerEnginePlugIn.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugIn.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInForContent.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInForContentPostprocess.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInForMining.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInScopeGlobal.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInScopeLocal.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugInScopeSingleThread.cs" />
+    <Compile Include="plugins\crawler\ISpiderPlugIn_IterationCycle.cs" />
+    <Compile Include="plugins\engine\enginePlugInCollection.cs" />
+    <Compile Include="plugins\engine\enginePlugIn_base.cs" />
+    <Compile Include="plugins\engine\IEnginePlugIn.cs" />
+    <Compile Include="plugins\indexDBUpdater.cs" />
+    <Compile Include="plugins\indexMasterTFIDFConstructor.cs" />
+    <Compile Include="plugins\index\indexPlugInCollection.cs" />
+    <Compile Include="plugins\index\indexPlugIn_base.cs" />
+    <Compile Include="plugins\IReportBenchmark.cs" />
+    <Compile Include="plugins\pluginSupport.cs" />
+    <Compile Include="plugins\reportPlugIn_benchmark.cs" />
+    <Compile Include="plugins\reportPlugIn_benchmarkResults.cs" />
+    <Compile Include="plugins\reportPlugIn_benchmarkResultsTools.cs" />
+    <Compile Include="plugins\reportPlugIn_CrawlToMC.cs" />
+    <Compile Include="plugins\reportPlugIn_sideIndexer.cs" />
+    <Compile Include="plugins\reportPlugIn_sideIndexer_progress.cs" />
+    <Compile Include="plugins\reportPlugIn_workload.cs" />
+    <Compile Include="plugins\reportPlugIn_workloadEntry.cs" />
+    <Compile Include="plugins\reportPlugIn_workload_settings.cs" />
+    <Compile Include="plugins\reportPlugIn_workload_state.cs" />
+    <Compile Include="plugins\report\IReportPlugin.cs" />
+    <Compile Include="plugins\report\ISpiderPlugInForReporting.cs" />
+    <Compile Include="plugins\report\reportingPlugInCollection.cs" />
+    <Compile Include="plugins\report\reportPlugIn_base.cs" />
+    <Compile Include="plugins\report\reportPlugIn_withRecord.cs" />
+    <Compile Include="plugins\workloadOptimizationPattern.cs" />
+    <Compile Include="plugins\workloadPluginState.cs" />
+    <Compile Include="project\analyticApplicationFolders.cs" />
+    <Compile Include="project\analyticExperimentEnum.cs" />
+    <Compile Include="project\analyticJob.cs" />
+    <Compile Include="project\analyticJobExtensions.cs" />
+    <Compile Include="project\analyticJobNote.cs" />
+    <Compile Include="project\analyticJobRunFlags.cs" />
+    <Compile Include="project\analyticMacroBase.cs" />
+    <Compile Include="project\analyticProject.cs" />
+    <Compile Include="project\analyticJobRecord.cs" />
+    <Compile Include="project\records\analyticJobRecordDataSetEnum.cs" />
+    <Compile Include="project\records\modelSpiderTestGeneralRecord.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sampleGroup\IGroupTag.cs" />
+    <Compile Include="sampleGroup\IGroupTagCollection.cs" />
+    <Compile Include="sampleGroup\sampleGroupAssignPolicy.cs" />
+    <Compile Include="sampleGroup\sampleGroupDistribution.cs" />
+    <Compile Include="sampleGroup\sampleGroupEngine.cs" />
+    <Compile Include="sampleGroup\sampleGroupItem.cs" />
+    <Compile Include="sampleGroup\sampleGroupSet.cs" />
+    <Compile Include="sampleGroup\sampleGroupSetInPhd.cs" />
+    <Compile Include="sampleGroup\sampleGroupSetInPhdEnum.cs" />
+    <Compile Include="settings\ContentProcessorConfiguration.cs" />
+    <Compile Include="settings\CrawlerAdHokModifications.cs" />
+    <Compile Include="settings\CrawlerJobEngineConfiguration.cs" />
+    <Compile Include="settings\DeliveryUnitReportConfiguration.cs" />
+    <Compile Include="settings\directReportConfiguration.cs" />
+    <Compile Include="settings\executionLogConfiguration.cs" />
+    <Compile Include="settings\IndexEngineConfiguration.cs" />
+    <Compile Include="settings\LinkResolverConfiguration.cs" />
+    <Compile Include="settings\LoaderConfiguration.cs" />
+    <Compile Include="settings\SupportSystemConfiguration.cs" />
+    <Compile Include="settings\TFIDFConfiguration.cs" />
+    <Compile Include="stage\achievementRecordEntry.cs" />
+    <Compile Include="stage\achievementRecordTable.cs" />
+    <Compile Include="stage\macroStageKeyPagesDetection.cs" />
+    <Compile Include="stage\macroStageRelevantPages.cs" />
+    <Compile Include="stage\macro\macroStageControlDeclareKeyPages.cs" />
+    <Compile Include="stage\macro\macroStageControlFullScan.cs" />
+    <Compile Include="stage\spiderObjective.cs" />
+    <Compile Include="stage\spiderObjectiveAchievement.cs" />
+    <Compile Include="stage\spiderObjectiveAchievementKind.cs" />
+    <Compile Include="stage\spiderObjectiveEnum.cs" />
+    <Compile Include="stage\spiderObjectiveModeEnum.cs" />
+    <Compile Include="stage\spiderObjectiveSolution.cs" />
+    <Compile Include="stage\spiderObjectiveSolutionSet.cs" />
+    <Compile Include="stage\spiderObjectiveStatus.cs" />
+    <Compile Include="stage\spiderObjectiveType.cs" />
+    <Compile Include="stage\spiderStageBase.cs" />
+    <Compile Include="stage\spiderStageControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="imbWEM.Core.licenseheader" />
+    <None Include="imbWEM.Core2.licenseheader" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imbWEM.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\imbCommonData\imbCommonModels\imbCommonModels.csproj">
+      <Project>{bf5af5e2-96b2-4505-a9f5-54ab401b4333}</Project>
+      <Name>imbCommonModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbCommonData\imbMiningContext\imbMiningContext.csproj">
+      <Project>{06e77b22-b55b-40d1-a8b0-b4e298022d6d}</Project>
+      <Name>imbMiningContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Core\imbNLP.Core.csproj">
+      <Project>{F9D07EFC-790D-4497-A81D-54B7C61EED07}</Project>
+      <Name>imbNLP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Data\imbNLP.Data.csproj">
+      <Project>{d4ea4257-315c-44e0-bb0c-3fc24ecb9ecd}</Project>
+      <Name>imbNLP.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\imbNLP\imbNLP.Transliteration\imbNLP.Transliteration.csproj">
+      <Project>{dd2c4d78-77e8-480b-a0a2-b51a6bf3808e}</Project>
+      <Name>imbNLP.Transliteration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+</Project>
