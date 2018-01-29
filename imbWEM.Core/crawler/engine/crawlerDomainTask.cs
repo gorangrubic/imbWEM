@@ -46,14 +46,14 @@ namespace imbWEM.Core.crawler.engine
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -266,8 +266,9 @@ namespace imbWEM.Core.crawler.engine
                 stageControl.prepare();
                                 
 
-                spiderTask sTask = evaluator.getSpiderSingleTask(web.seedLink, wRecord, 1);
-                spiderTaskResult sResult = loader.runSpiderTask(sTask, wRecord);
+                spiderTask sTask = evaluator.getSpiderSingleTask(web.seedLink, wRecord, 1); // <-------- 
+
+                spiderTaskResult sResult = loader.runSpiderTask(sTask, wRecord); // <--------------------------------------------------------[ izvršava 
 
                 if (sResult.calculateSuccessRate() == 0)
                 {
@@ -294,6 +295,7 @@ namespace imbWEM.Core.crawler.engine
                 // <--- STAGE 2
                 do
                 {
+
 
                     iterationStatus = crawlerDomainTaskIterationPhase.iterationStart;
 
@@ -666,7 +668,7 @@ namespace imbWEM.Core.crawler.engine
             try
             {
                 parent = __parent;
-                //wProfile = __wProfile;
+                wProfile = __wProfile;
 
                 aRecord = parent.tRecord.aRecord;
                // crawler = aRecord.sciProject.mainWebCrawler;
@@ -676,12 +678,12 @@ namespace imbWEM.Core.crawler.engine
 
                // crawlerContext = aRecord.crawledContextGlobalRegister.GetContext(wProfile.domain, tRecord.instance.settings.legacySettings, wProfile, aRecord.testRunStamp);
 
-                tGeneralRecord = aRecord.tGeneralRecord;
+             //   tGeneralRecord = aRecord.tGeneralRecord;
 
                
 
-                aRecord.tGeneralRecord.startChildRecord(wProfile, wProfile.url);
-                wGeneralRecord = aRecord.tGeneralRecord.childRecord; // aRecord.tGeneralRecord.children.GetRecord(crawlerContext, true);
+              //  aRecord.tGeneralRecord.startChildRecord(wProfile, wProfile.url);
+              //  wGeneralRecord = aRecord.tGeneralRecord.childRecord; // aRecord.tGeneralRecord.children.GetRecord(crawlerContext, true);
 
 
                 evaluator = tRecord.instance.Clone(tRecord.logBuilder);

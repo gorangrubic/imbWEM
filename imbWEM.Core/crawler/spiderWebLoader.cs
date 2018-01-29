@@ -36,6 +36,7 @@ namespace imbWEM.Core.crawler
     using System.Threading.Tasks;
     using System.Xml.Serialization;
     using System.Xml.XPath;
+    using HtmlAgilityPack;
     using imbACE.Core.commands.menu;
     using imbACE.Core.core;
     using imbACE.Core.core.exceptions;
@@ -54,14 +55,14 @@ namespace imbWEM.Core.crawler
     using imbCommonModels.structure;
     using imbNLP.Core.contentStructure.tokenizator;
     using imbNLP.Core.textRetrive;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -85,6 +86,7 @@ namespace imbWEM.Core.crawler
     using imbWEM.Core.crawler.rules.active;
     using imbWEM.Core.crawler.targets;
     using imbWEM.Core.directReport;
+    using imbWEM.Core.loader;
     using imbWEM.Core.stage;
 
     /// <summary>
@@ -170,40 +172,47 @@ namespace imbWEM.Core.crawler
             
             spiderTaskResult sResult = sTask.createResult();
 
-
-            if (imbWEMManager.settings.crawlerJobEngine.crawlerDoParallelTaskLoads)
+            try
             {
-                Parallel.ForEach(sTask, ln =>
+
+                if (imbWEMManager.settings.crawlerJobEngine.crawlerDoParallelTaskLoads)
                 {
-                    modelSpiderPageRecord pRecord = wRecord.getChildRecord(ln, ln.url); //.startChildRecord(ln, ln.url);
+                    Parallel.ForEach(sTask, ln =>
+                    {
+                        modelSpiderPageRecord pRecord = wRecord.getChildRecord(ln, ln.url); //.startChildRecord(ln, ln.url);
 
                     spiderTaskResultItem rItem = runSpiderTaskItem(ln, sTask.doTokenization, pRecord);
 
-                    if (rItem.status != pageStatus.failed)
-                    {
-                        wRecord.context.targets.AttachPage(rItem, pRecord.logBuilder, blockCount);
+                        if (rItem.status != pageStatus.failed)
+                        {
+                            wRecord.context.targets.AttachPage(rItem, pRecord.logBuilder, blockCount); // <-------------------------------- [ STIZE
                     }
 
-                    sResult.AddResult(rItem);
+                        sResult.AddResult(rItem);
 
-                });
-            }
-            else
-            {
-                foreach (spiderLink ln in sTask)
-                {
-
-                    modelSpiderPageRecord pRecord = wRecord.getChildRecord(ln, ln.url); //.startChildRecord(ln, ln.url);
-
-                    spiderTaskResultItem rItem = runSpiderTaskItem(ln, sTask.doTokenization, pRecord);
-
-                    if (rItem.status != pageStatus.failed)
-                    {
-                        wRecord.context.targets.AttachPage(rItem, pRecord.logBuilder, blockCount);
-                    }
-
-                    sResult.AddResult(rItem);
+                    });
                 }
+                else
+                {
+                    foreach (spiderLink ln in sTask)
+                    {
+
+                        modelSpiderPageRecord pRecord = wRecord.getChildRecord(ln, ln.url); //.startChildRecord(ln, ln.url);
+
+                        spiderTaskResultItem rItem = runSpiderTaskItem(ln, sTask.doTokenization, pRecord);
+
+                        if (rItem.status != pageStatus.failed)
+                        {
+                            wRecord.context.targets.AttachPage(rItem, pRecord.logBuilder, blockCount);
+                        }
+
+                        sResult.AddResult(rItem);
+                    }
+                }
+
+            } catch (Exception ex)
+            {
+                imbWEMManager.log.log("runSpiderTask exception: " + ex.Message);
             }
 
             loadIndex = loadIndex + sResult.Count();
@@ -243,165 +252,129 @@ namespace imbWEM.Core.crawler
         {
             spiderTaskResultItem rItem = new spiderTaskResultItem(ln);
 
-
-
             crawledPage page = null;
-
             
-
-            page = doWebRequest(ln.url, pRecord);
+            page = doWebRequest(ln.url, pRecord); // < ----------------------- ovde puca
 
             rItem.finish(page, pRecord.iteration);
 
             if (page.status == pageStatus.failed)
             {
-              //  wRecord.log("Page: " + ln.url + " failed --- *metrics* extraction impossibile");
+              
                 return rItem;
             }
-
-
-            pRecord.pGeneralRecord = pRecord.wRecord.wGeneralRecord.getChildRecord(page, page.url);
-            pRecord.acceptPage(page);
-
-            pRecord.pGeneralRecord.AddSideRecord(pRecord);
             
+          
+            pRecord.acceptPage(page);
 
            
             pRecord.init(rItem.sPage);
-           // pRecord.pGeneralRecord.loadedBy.Set(pRecord.wRecord.tRecord.instance, true, checkListLogic.OR, true);
 
-            //var pGeneralRecord = pRecord.pGeneralRecord;
-            
-            //if (pGeneralRecord.loadedBy.)
-            //{
-            //    pGeneralRecord.tokenizedContent = page.tokenizedContent as htmlContentPage;
-
-               
-            //}
+            return rItem; // <---------------------------------------------- [ prolazi
 
 
-            // pRecord.wRecord.siteProfile.automaticReconnect(pRecord.wRecord.profiler, pRecord.wRecord.aRecord.testRunStamp);
-
-            //
-
-            /*
-            if (pGeneralRecord.pProfile == null)
-            {
-                webPageProfile wpp = new webPageProfile();
-                //pRecord.wRecord.siteProfile.pageProfiles.sel
-                wpp.url = page.url;
-                wpp.textContent = page.result.document.processedSource;
-                wpp.title = page.caption;
-                pGeneralRecord.pProfile = wpp;//.pageProfiles_relation.getOrCreate(wRecord.testRunStamp) as webPageProfile;
-                pRecord.wRecord.siteProfile.pageProfiles.Add(wpp);
-               
-                
-                pGeneralRecord.pMetrics = pGeneralRecord.pProfile.metrics;
-
-                pGeneralRecord.rpHtml = metricsEngine.getHtmlMetrics(page, _settings, crawlerContext.report);
-                pGeneralRecord.rpToken = metricsEngine.getTokenMetrics(page, _settings, imbLanguageFramework.imbLanguageFrameworkManager.serbian.basic, crawlerContext.report);
-                // <-------- ugaseno zbog buga
-                // pGeneralRecord.rpLang = metricsEngine.getLanguageReport(page, imbLanguageFramework.imbLanguageFrameworkManager.serbian.basic, crawlerContext.AgentSettings.sampleTaker_languageTests, _settings, crawlerContext.report);
-
-                pGeneralRecord.rpHtml.sendToObject(pGeneralRecord.pProfile, true, false, true);
-                pGeneralRecord.rpToken.sendToObject(pGeneralRecord.pProfile, false, false, true);
-                // pGeneralRecord.rpLang.sendToObject(pGeneralRecord.pProfile, false, false, true);
-                
-               
-                
-               // pGeneralRecord.pProfile.setModified();
-             //   pGeneralRecord.pProfile.saveItem();
-
-            }
-            */
-            // wRecord.log("Page general record have no page profile set yet ---> building general record for: " + page.url);
+          
 
 
-
-
-            // --- render diagrama u String prebaciti u output context
-            //   String mainDiagramOutput = diagramOutput.getOutput(mainDiagram, null);
-
-
-
-            //aceLog.log("Metrics for " + page.url + " saved html[" + pGeneralRecord.rpHtml.Count + "]" +
-            //           " tokenstats[" + pGeneralRecord.rpToken.Count + "]" +
-            //           " token_unique[" + pGeneralRecord.tokenFrequencyMatrixByCategory[contentTokenCountCategory.all].Count + "]"); // langtest[" + pGeneralRecord.rpLang.Count + "]");
-
-
-            //   pGeneralRecord.pProfile.metrics.setModified();
-            // pGeneralRecord.pProfile.metrics.saveItem();
-
-
-
-            return rItem;
         }
 
 
-        internal crawledPage makeCrawledPage(webResult result, modelSpiderPageRecord pRecord)
+        /// <summary>
+        /// Makes the crawled page.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        /// <param name="pRecord">The p record.</param>
+        /// <returns></returns>
+        /// <exception cref="aceGeneralException">Error in link processing</exception>
+        internal crawledPage makeCrawledPage(IWebResult result, modelSpiderPageRecord pRecord)
         {
-            crawledPage page = new crawledPage(result.response.responseUrl, 0);
+            crawledPage page = new crawledPage(result.responseUrl, 0);
+            page.result = result;
+            page.domain = pRecord.wRecord.domainInfo.domainName;
+            
+            var links = result.HtmlDocument.DocumentNode.Descendants("a");
 
-            page.result = result.request.result as IWebResult;
-
-            XPathNavigator nav = result.document.getDocumentNavigator();
-
-            page.report.connect(nav, true);
-
-            page.report = metricsEngine.getMetaReport(page, page.report);
-
-            var nodes_entry = page.report.report("links", htmlDefinitions.HTMLTags_linkTags);
-
-
-            if (nodes_entry.nodes != null)
+            if (links.Any())
             {
-                foreach (IXPathNavigable nd in nodes_entry.nodes)
-                {
-                    try
-                    {
-                        XPathNavigator ndv;
-                        // logSystem.log(c + " : Starting new link:" + nd.toStringSafe(), logType.Debug);
-                        if (nd == null)
-                        {
-                            continue;
-                        }
-                        ndv = nd.CreateNavigator();
-                        if (ndv == null)
-                        {
-                            continue;
-                        }
 
-                        // logSystem.log(c + " : Processing link: " + ndv.OuterXml.Trim(), logType.Debug);
-                        //String xml = ndv.OuterXml.toStringSafe();
-
-                        link l = new link(ndv);
-
-                        if (!l.isDefaultHomePage)
-                        {
-                            page.links.Add(l);
-                        }
-                        else
-                        {
-                        }
-
-                        // c++;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new aceGeneralException(ex.Message, ex, page, "Error in link processing");
-                    }
-                    //page.acceptLink(linkTools.nodeToLink(nd.CreateNavigator(), result.response.responseDomain, page.url), _crawlerAgentContext.AgentSettings.storeAllLinks);
-                }
-
-                page.links.deployCollection(page);
+            } else
+            {
 
             }
+
+
+            foreach (HtmlNode hn in links)
+            {
+                try
+                {
+                    var ndv = hn.CreateNavigator();
+                    link l = new link(ndv);
+                    if (!l.isDefaultHomePage)
+                    {
+                        page.links.Add(l);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new aceGeneralException(ex.Message, ex, page, "Error in link processing");
+                }
+            }
+
+            if (page.links.Count == 0)
+            {
+
+            }
+
+            var meta = result.HtmlDocument.DocumentNode.Descendants("meta");
+            foreach (HtmlNode hn in meta)
+            {
+                String name = hn.GetAttributeValue("name", "none");
+                String content = hn.GetAttributeValue("content", "");
+
+                switch (name)
+                {
+                    case "keywords":
+                        page.pageKeywords = content.SplitSmart(",", "", true, true);
+                        break;
+                    case "description":
+                        page.pageDescription = content;
+                        break;
+                }
+            }
+
+            var title = result.HtmlDocument.DocumentNode.Descendants("title").FirstOrDefault();
+            if (title != null) {
+                page.pageCaption = title.InnerText;
+            }
+
+
+            page.links.deployCollection(page);
 
             page.isCrawled = true;
             page.status = pageStatus.loaded;
+
+            if (!page.links.byScope[imbCommonModels.enums.linkScope.inner].Any())
+            {
+
+            }
+
             return page;
         }
-      
+
+        //request.doContentCheck = false;
+        //request.doCoolOff = false;
+        //request.doRetryExecution = false;
+        //request.doSubdomainVariations = false;
+        //request.doTimeoutLimiter = true;
+
+        //request.doLogCacheLoaded = imbWEMManager.settings.executionLog.doPageLoadedFromCache;
+        //request.doLogNewLoad = imbWEMManager.settings.executionLog.doPageLoadedLog;
+        //request.doLogRequestError = imbWEMManager.settings.executionLog.doPageErrorOrDuplicateLog;
+
+        //request.htmlSettings.doTransliterateToLat = false;
+        //request.htmlSettings.doRemoveHtmlEntities = true;
+        //request.htmlSettings.doUpperCase = true;
+        //request.htmlSettings.doAutocloseOnEnd = true;
 
         /// <summary>
         /// Does the web request
@@ -411,85 +384,42 @@ namespace imbWEM.Core.crawler
         /// <returns></returns>
         internal crawledPage doWebRequest(string url, modelSpiderPageRecord pRecord)
         {
-            //var pReport = wRecord.childRecord;
-
-            if (!url.Contains(imbUrlOps.urlShemaSufix))
+           
+            url = controler.GetDuplicateUrl(url);
+            
+            if (url.isNullOrEmpty())
             {
-                
-
-              //  url = url.ensureStartsWith(crawlerContext.domain.ensureEndsWith("/")).validateUrlShema(crawlerContext.shema);
-
-                //imbUrlOps.getStandardizedUrl(url.ensureStartsWith(crawlerContext.domain), crawlerContext.shema);
+                imbWEMManager.log.log("EMPTY URL PASSED TO THE WEB LOADER");
+                imbACE.Services.terminal.aceTerminalInput.doBeepViaConsole(2200);
             }
 
-
-            url = controler.GetDuplicateUrl(url);
-
-
-
-            webRequestClient request = new webRequestClient(url, webRequestActionType.HTMLasXML);
+            loaderRequest wemRequest = new loaderRequest(url);
             
-            request.doContentCheck = false;
-            request.doCoolOff = false;
-            request.doRetryExecution = false;
-            request.doSubdomainVariations = false;
-            request.doTimeoutLimiter = true;
-
-            request.doLogCacheLoaded = imbWEMManager.settings.executionLog.doPageLoadedFromCache;
-            request.doLogNewLoad = imbWEMManager.settings.executionLog.doPageLoadedLog;
-            request.doLogRequestError = imbWEMManager.settings.executionLog.doPageErrorOrDuplicateLog;
-            
-            request.htmlSettings.doTransliterateToLat = false;
-            request.htmlSettings.doRemoveHtmlEntities = true;
-            request.htmlSettings.doUpperCase = true;
-            request.htmlSettings.doAutocloseOnEnd = true;
-
-
-          
-            //if (webclientSettings.doUseProxy)
-            //{
-            //    imbProxy prox = imbProxyManagerEngine.globalProxyList.getDefaultVelesProxy();
-            //    request.proxyToUse = prox.getWebProxy();
-            //}
-
-
-            webResult result = null;
-
-            if (controler.CheckFail(request.url))
+            if (controler.CheckFail(wemRequest.url))
             {
-                result = new webResult(request);
-                request.status = webRequestEventType.error;
-                request.lastLogMessage = "Url [" + request.url + "] is known fail address";
-                
-                
+                wemRequest.executed = true;
+                wemRequest.statusCode = System.Net.HttpStatusCode.ExpectationFailed;
             } else
             {
-                result = request.executeRequest(webclientSettings);
-
-                if (result.request.isErrorStatus)
+                wemRequest = loaderSubsystem.ExecuteRequest(wemRequest);   // <-----------------------------
+                if (wemRequest.statusCode != System.Net.HttpStatusCode.OK)
                 {
-                    controler.SetFailUrl(request.url);
-                }
-
-                if (result.request.status == webRequestEventType.error)
-                {
-
-                }
+                    controler.SetFailUrl(wemRequest.url);
+                }   
             }
-            
-            
+                       
 
             if (dataLoad != null)
             {
-                dataLoad.AddBytes(result.byteSize);
+                dataLoad.AddBytes(wemRequest.byteSize);
             }
 
 
-            crawledPage page = makeCrawledPage(result, pRecord); //crawlerContext.deployPage(result, crawlerFlags);
+            crawledPage page = makeCrawledPage(wemRequest, pRecord); // <-----------------------------[ STIZE DO OVDE
 
 
 
-            return page;
+            return page; // <---- prolazi
 
         }
     }

@@ -40,14 +40,14 @@ namespace imbWEM.Core.crawler.model
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -88,8 +88,13 @@ namespace imbWEM.Core.crawler.model
                 spiderTarget target = (spiderTarget) __target;
                 sourceHtml = target.page.webpage.result.sourceCode;
                 htmlDoc = target.page.webpage.result.HtmlDocument; //(HtmlDocument)target.page.webpage.result.document.getDocument<HtmlDocument>();
-                sourceXml = htmlDoc.DocumentNode.OuterHtml;
-
+                if (htmlDoc != null)
+                {
+                    if (htmlDoc.DocumentNode != null)
+                    {
+                        sourceXml = target.page.webpage.result.sourceCode;
+                    }
+                }
                 //sourceXml = target.page.spiderResult.page.result.document.getDocument<HtmlDocument>()
             }
             type = __type;

@@ -40,14 +40,14 @@ namespace imbWEM.Core.console
     using imbACE.Network.tools;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.data;
@@ -73,16 +73,40 @@ namespace imbWEM.Core.console
     using imbWEM.Core.index.core;
     using imbWEM.Core.stage;
     using imbCommonModels.webStructure;
+    using imbSCI.Data.interfaces;
+    using System;
 
     /// <summary>
     /// Simple web site profile sample collection
     /// </summary>
-    public class webSiteSimpleSample:IEnumerable<string>
+    public class webSiteSimpleSample:IEnumerable<string>, IObjectWithNameAndDescription
     {
         public webSiteSimpleSample()
         {
 
         }
+
+
+        private String _name = "";
+        /// <summary>
+        /// Name for this instance
+        /// </summary>
+        public String name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        private String _description = "";
+        /// <summary>
+        /// Human-readable description of object instance
+        /// </summary>
+        public String description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+
 
 
         /// <summary> </summary>

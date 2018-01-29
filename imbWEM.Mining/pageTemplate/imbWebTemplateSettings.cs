@@ -60,13 +60,7 @@ using imbSCI.DataComplex.data.modelRecords;
 using imbSCI.DataComplex.extensions.data.formats;
 using imbSCI.DataComplex.extensions.text;
 using imbSCI.DataComplex.special;
-using imbWEM.Core.crawler.evaluators;
-using imbWEM.Core.crawler.model;
-using imbWEM.Core.crawler.modules.performance;
-using imbWEM.Core.crawler.rules.active;
-using imbWEM.Core.crawler.targets;
-using imbWEM.Core.directReport;
-using imbWEM.Core.stage;
+
 
 namespace imbWEM.Mining.pageTemplate
 {
@@ -123,18 +117,19 @@ namespace imbWEM.Mining.pageTemplate
     using imbSCI.DataComplex.extensions.text;
     using imbSCI.DataComplex.special;
     using imbSCI.DataComplex.special;
+    using imbACE.Core.interfaces.primitives;
+    using imbNLP.Core.textRetrive;
 
-//    using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+    //    using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
     #endregion
 
     /// <summary>
     /// Klasa za zajednička podešavanja koja razmenjuju imbModul i low-level Context
     /// </summary>
-    public class imbWebTemplateSettings : aceCommonTypes.primitives.imbBindable
+    public class imbWebTemplateSettings : imbBindable
     {
-        #region -----------  uniKeyMode  -------  [način na koji se formira uniKey oznaka]
-
+       
         private uniKeyCreation _uniKeyMode = uniKeyCreation.idToString; // = new uniKeyCreation();
 
         /// <summary>
@@ -154,9 +149,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  macroAlgorithm  -------  [Koji algoritam koristi za detekciju]
 
         private templateDetectionAlgorithms _macroAlgorithm = templateDetectionAlgorithms.imbBasic;
                                             // = new templateDetectionAlgorithms();
@@ -177,11 +169,7 @@ namespace imbWEM.Mining.pageTemplate
                 OnPropertyChanged("macroAlgorithm");
             }
         }
-
-        #endregion
-
-        #region -----------  doMakeHTML  -------  [Formirace HTML (string) sadržaj templejta ]
-
+   
         private bool _doMakeHTML; // = new Boolean();
 
         /// <summary>
@@ -200,10 +188,6 @@ namespace imbWEM.Mining.pageTemplate
                 OnPropertyChanged("doMakeHTML");
             }
         }
-
-        #endregion
-
-        #region -----------  doMakeTEXT  -------  [Formirace Text sadržaj templejta]
 
         private bool _doMakeTEXT; // = new Boolean();
 
@@ -224,9 +208,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  doMakeXML  -------  [Rekonstruisaće XML (HTML) strukturu templejta]
 
         private bool _doMakeXML; // = new Boolean();
 
@@ -247,9 +228,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  commonTreeDetection  -------  [Način na koji se detektuje zajednička struktura stranica]
 
         private commonTreeMethod _commonTreeDetection = commonTreeMethod.imbEndNodePathFrequency;
                                  // = new commonTreeMethod();
@@ -270,10 +248,6 @@ namespace imbWEM.Mining.pageTemplate
                 OnPropertyChanged("commonTreeDetection");
             }
         }
-
-        #endregion
-
-        #region -----------  treeTolerance  -------  [Tolerancija prilikom detektovanja zajedničke strukture stranica - različito se primenjuje u zavisnosti od metode]
 
         private int _treeTolerance; // = new Int32();
 
@@ -296,9 +270,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  contentPolicy  -------  [Na koji način tretira sadržaj unutar strukture koja se smatra zajedničkom]
 
         private commonContentPolicy _contentPolicy = commonContentPolicy.extractCommonContent;
                                     // = new commonContentPolicy();
@@ -320,9 +291,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  contentExtractionTolerance  -------  [Stepen tolerancije prilikom izvlačenja zajedničkog sadržaja. Ako je više od 0 biće i sadržaja koji nisu zajednički baš svim node-ima]
 
         private int _contentExtractionTolerance = 0; // = new Int32();
 
@@ -345,9 +313,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  contentTokenizationSettings  -------  [Podešavanja tokenizacije sadržaja - za commonContentExtraction]
 
         private imbNLPsettings _contentTokenizationSettings = new imbNLPsettings();
 
@@ -369,9 +334,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  textRetriveSetup  -------  [Podešavanja vezana za prevođenje node-a u tekst]
 
         private textRetriveSetup _textRetriveSetup = new textRetriveSetup();
 
@@ -393,9 +355,6 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
-
-        #region -----------  doSavePageUrls  -------  [Da li da pamti od kojih je stranica nastao template]
 
         private bool _doSavePageUrls = true; // = new Boolean();
 
@@ -416,30 +375,7 @@ namespace imbWEM.Mining.pageTemplate
             }
         }
 
-        #endregion
 
-        #region -----------  sampleSetup  -------  [Podešavanja za odabir stranica za uzorkovanje pri template detekciji]
-
-        private sampleSettings _sampleSetup = new sampleSettings();
-
-        /// <summary>
-        /// Podešavanja za odabir stranica za uzorkovanje pri template detekciji
-        /// </summary>
-        // [XmlIgnore]
-        [Category("Page Sample")]
-        [DisplayName("sampleSetup")]
-        [Description("Podešavanja za odabir stranica za uzorkovanje pri template detekciji")]
-        [ExpandableObject]
-        public sampleSettings sampleSetup
-        {
-            get { return _sampleSetup; }
-            set
-            {
-                _sampleSetup = value;
-                OnPropertyChanged("sampleSetup");
-            }
-        }
-
-        #endregion
+       
     }
 }

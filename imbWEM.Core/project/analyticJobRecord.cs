@@ -40,14 +40,14 @@ namespace imbWEM.Core.project.records
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.collection.checkLists;
@@ -71,7 +71,7 @@ namespace imbWEM.Core.project.records
     using imbWEM.Core.crawler.targets;
     using imbWEM.Core.directReport;
     using imbWEM.Core.stage;
-    using Newtonsoft.Json;
+    // using Newtonsoft.Json;
 
     /// <summary>
     /// 
@@ -161,7 +161,7 @@ namespace imbWEM.Core.project.records
         /// <summary>
         /// Reference to the webSiteProfileSample instance
         /// </summary>
-        [JsonIgnore]
+        
         //public webSiteProfileSample sample { get; protected set; } = new webSiteProfileSample();
 
         /// <summary>
@@ -228,8 +228,12 @@ namespace imbWEM.Core.project.records
         /// </summary>
         public List<ISpiderEvaluatorBase> spiderList { get; set; } = new List<ISpiderEvaluatorBase>();
 
+        public analyticJobRecord(analyticJob __job) : base(__job.name, __job)
+        {
 
-        public analyticJobRecord(analyticJob __job, analyticProject __sciProject, analyticJobRunFlags aFlags) :base(__sciProject.name, __job)
+        }
+
+            public analyticJobRecord(analyticJob __job, analyticProject __sciProject, analyticJobRunFlags aFlags) :base(__sciProject.name, __job)
         {
             
             job = __job;

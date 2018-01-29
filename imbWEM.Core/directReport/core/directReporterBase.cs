@@ -39,14 +39,14 @@ namespace imbWEM.Core.directReport.core
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.data;
@@ -85,25 +85,25 @@ namespace imbWEM.Core.directReport.core
         /// <param name="reportRootDir">The report root dir.</param>
         /// <param name="__parent">The parent.</param>
         /// <param name="__notation">The notation.</param>
-        public directReporterBase(string reportName, string reportRootDir, aceAdvancedConsoleWorkspace __parent, aceAuthorNotation __notation)
+        public directReporterBase(string reportName, string reportRootDir, aceAuthorNotation __notation)
         {
             name = reportName;
             rootPath = reportRootDir;
             reportPath = rootPath.add(reportName, "\\");
 
-            parent = __parent;
+           // parent = __parent;
             notation = __notation;
             deploy();
         }
 
-        public directReporterBase(string reportName, folderNode _folder, aceAdvancedConsoleWorkspace __parent, aceAuthorNotation __notation)
+        public directReporterBase(string reportName, folderNode _folder, aceAuthorNotation __notation)
         {
             name = reportName;
 
             rootPath = _folder.path.getPathVersion(1, "\\");// ; //reportRootDir;
             reportPath = _folder.path; // rootPath.add(reportName, "\\");
 
-            parent = __parent;
+            //parent = __parent;
             notation = __notation;
             deploy();
         }
@@ -188,7 +188,7 @@ namespace imbWEM.Core.directReport.core
         /// <summary>
         /// 
         /// </summary>
-        public aceAdvancedConsoleWorkspace parent { get; protected set; }
+     //   public aceAdvancedConsoleWorkspace parent { get; protected set; }
     }
 
 }

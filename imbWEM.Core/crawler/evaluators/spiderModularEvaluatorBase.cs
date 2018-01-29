@@ -39,14 +39,14 @@ namespace imbWEM.Core.crawler.evaluators
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -74,7 +74,7 @@ namespace imbWEM.Core.crawler.evaluators
 
     public abstract class spiderModularEvaluatorBase : spiderEvaluatorBase, ISpiderEvaluatorBase
     {
-        public spiderModularEvaluatorBase(string __name, string __description, string __aboutfile, spiderUnit __parent) : base(__name, __description, __aboutfile, __parent)
+        public spiderModularEvaluatorBase(string __name, string __description, string __aboutfile) : base(__name, __description, __aboutfile)
         {
         }
 

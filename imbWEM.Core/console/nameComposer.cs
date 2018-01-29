@@ -29,6 +29,8 @@
 // ------------------------------------------------------------------------------------------------------------------
 using imbSCI.Core.extensions.io;
 using imbSCI.Core.reporting.template;
+using imbWEM.Core.consolePlugin;
+using imbWEM.Core.crawler.engine;
 using imbWEM.Core.crawler.evaluators;
 using System;
 using System.Collections.Generic;
@@ -55,7 +57,7 @@ namespace imbWEM.Core.console
             sampleName
         }
 
-        public static PropertyCollection GetData(analyticConsoleState state, ISpiderEvaluatorBase crawler)
+        public static PropertyCollection GetData(crawlerDomainTaskMachineSettings crawlerJobEngineSettings, ISpiderEvaluatorBase crawler)
         {
             PropertyCollection data = new PropertyCollection();
             data[nameComposerFields.crawlerClassName] = crawler.GetType().Name;
@@ -63,15 +65,39 @@ namespace imbWEM.Core.console
             data[nameComposerFields.crawlerFileFriendlyName] = crawler.name.getCleanFilepath().Replace("-", "");
             data[nameComposerFields.variablePLmax] = crawler.settings.limitTotalPageLoad;
             data[nameComposerFields.variableLT] = crawler.settings.limitIterationNewLinks;
-            data[nameComposerFields.variableTCmax] = state.crawlerJobEngineSettings.TC_max;
+            data[nameComposerFields.variableTCmax] = crawlerJobEngineSettings.TC_max;
+            
+
+            return data;
+        }
+
+        public static PropertyCollection GetData(ICrawlJobContext state, ISpiderEvaluatorBase crawler)
+        {
+            PropertyCollection data = new PropertyCollection();
+            data[nameComposerFields.crawlerClassName] = crawler.GetType().Name;
+            data[nameComposerFields.crawlerTitleName] = crawler.name;
+            data[nameComposerFields.crawlerFileFriendlyName] = crawler.name.getCleanFilepath().Replace("-", "");
+            data[nameComposerFields.variablePLmax] = crawler.settings.limitTotalPageLoad;
+            data[nameComposerFields.variableLT] = crawler.settings.limitIterationNewLinks;
+            //data[nameComposerFields.variableTCmax] = state.crawlerJobEngineSettings.TC_max;
             data[nameComposerFields.sampleSize] = state.sampleList.Count();
-            data[nameComposerFields.sampleFileSource] = state.sampleFile;
-            data[nameComposerFields.sampleName] = state.sampleTags;
+            //data[nameComposerFields.sampleFileSource] = state.sampleFile;
+            //data[nameComposerFields.sampleName] = state.sampleTags;
             
             return data;
         }
 
-        public static String GetCrawlFolderName(ISpiderEvaluatorBase spider, analyticConsoleState state, String templateString)
+        public static String GetCrawlFolderName(ISpiderEvaluatorBase spider, crawlerDomainTaskMachineSettings crawlerJobEngineSettings , String templateString)
+        {
+            stringTemplate template = new stringTemplate(templateString);
+
+            PropertyCollection data = GetData(crawlerJobEngineSettings, spider);
+
+            return template.applyToContent(data);
+        }
+
+
+        public static String GetCrawlFolderName(ISpiderEvaluatorBase spider, ICrawlJobContext state, String templateString)
         {
             stringTemplate template = new stringTemplate(templateString);
 

@@ -39,14 +39,14 @@ namespace imbWEM.Core.crawler.evaluators.modular
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbNLP.Data;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -73,8 +73,8 @@ namespace imbWEM.Core.crawler.evaluators.modular
 
     public class SM_LTS : spiderModularEvaluatorBase, ISpiderWithLanguageModule, ISpiderWithTemplateModule, ISpiderWithStructureModule
     {
-        public SM_LTS(spiderUnit __parent)
-            : base("SM-LTS", "SM crawler with Language, Template and Structure_rank frontier modules", "sm_lts.md", __parent)
+        public SM_LTS()
+            : base("SM-LTS", "SM crawler with Language, Template and Structure_rank frontier modules", "sm_lts.md")
         {
 
         }

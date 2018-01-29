@@ -41,14 +41,14 @@ namespace imbWEM.Core.console
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.data;
@@ -138,7 +138,7 @@ namespace imbWEM.Core.console
 
         public directAnalyticReporter makeReporter(string crawlerName, aceAuthorNotation notation)
         {
-            directAnalyticReporter output = new directAnalyticReporter(crawlerName, folder[ACFolders.reports], this, notation);
+            directAnalyticReporter output = new directAnalyticReporter(crawlerName, folder[ACFolders.reports], notation);
 
             return output;
         }

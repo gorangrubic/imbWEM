@@ -40,14 +40,14 @@ namespace imbWEM.Core.crawler.targets
     using imbACE.Services.terminal;
     using imbCommonModels.pageAnalytics.core;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.data;
@@ -75,6 +75,12 @@ namespace imbWEM.Core.crawler.targets
     using imbWEM.Core.directReport;
     using imbWEM.Core.stage;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="imbWEM.Core.crawler.targets.spiderWebElementBase" />
+    /// <seealso cref="imbSCI.Data.interfaces.IObjectWithNameAndDescription" />
+    /// <seealso cref="imbCommonModels.webStructure.ISpiderPage" />
     public class spiderPage:spiderWebElementBase, IObjectWithNameAndDescription, ISpiderPage
     {
         /// <summary>

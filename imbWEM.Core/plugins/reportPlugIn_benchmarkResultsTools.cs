@@ -38,14 +38,14 @@ namespace imbWEM.Core.plugins
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -64,6 +64,7 @@ namespace imbWEM.Core.plugins
     using imbSCI.DataComplex.extensions.text;
     using imbSCI.DataComplex.special;
     using imbWEM.Core.console;
+    using imbWEM.Core.consolePlugin;
     using imbWEM.Core.crawler.evaluators;
     using imbWEM.Core.crawler.model;
     using imbWEM.Core.crawler.modules.performance;
@@ -74,7 +75,7 @@ namespace imbWEM.Core.plugins
 
     public static class reportPlugIn_benchmarkResultsTools {
 
-        public static void SetTestIDAndSignature(this IReportBenchmark target, ISpiderEvaluatorBase evaluator, analyticConsoleState state, modelSpiderTestRecord tRecord)
+        public static void SetTestIDAndSignature(this IReportBenchmark target, ISpiderEvaluatorBase evaluator, ICrawlJobContext state, modelSpiderTestRecord tRecord)
         {
             target.TestSignature = evaluator.name + "|DC:" + state.sampleList.Count + "|PL:" + evaluator.settings.limitTotalPageLoad + "|LT:" + evaluator.settings.limitIterationNewLinks + "|IID:" + imbWEMManager.index.current_indexID + "|SID:" + imbWEMManager.index.indexSessionEntry.SessionID.add(evaluator.settings.SignatureSufix);
             target.Crawler = tRecord.instance.name;

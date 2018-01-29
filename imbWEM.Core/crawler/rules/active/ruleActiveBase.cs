@@ -39,14 +39,14 @@ namespace imbWEM.Core.crawler.rules.active
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -73,6 +73,9 @@ namespace imbWEM.Core.crawler.rules.active
 
     public abstract class ruleActiveBase:spiderEvalRuleForLinkBase, IAppendDataFields, IRuleActiveBase, IRuleForTarget
     {
+
+        public string instanceName { get { return name; } set { name = value; } }
+
         public ruleActiveBase(string __name, string __description, int __scoreUnit, int __penaltyUnit, ISpiderEvaluatorBase __parent) : base(__name, __description, __scoreUnit, __penaltyUnit, __parent)
         {
             mode = spiderEvalRuleResultEnum.active;

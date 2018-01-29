@@ -42,14 +42,14 @@ namespace imbWEM.Core.crawler.targets
     using imbACE.Services.terminal;
     using imbCommonModels.contentBlock;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.data;
@@ -338,7 +338,7 @@ namespace imbWEM.Core.crawler.targets
             spiderTarget target = null;
 
             target = GetOrCreateTarget(pg.target, true, false);
-            target.AttachPage(pg.sPage,response, targetBlockCount);
+            target.AttachPage(pg.sPage,response, targetBlockCount); // <---------------- [ Do ovde stize
 
             if (target.contentBlocks.Any())
             {

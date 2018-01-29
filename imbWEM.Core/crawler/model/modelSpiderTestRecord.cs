@@ -43,15 +43,15 @@ namespace imbWEM.Core.crawler.model
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbNLP.Data;
-    using imbNLP.Data.evaluate;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.evaluate;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -77,15 +77,16 @@ namespace imbWEM.Core.crawler.model
     using imbWEM.Core.project;
     using imbWEM.Core.project.records;
     using imbWEM.Core.stage;
+    using imbNLP.Data.evaluate;
 
     // using webSiteComplexCrawler;
 
 
-	/// <summary>
-	/// Data model :: spider execution record for <see cref="testDefinition"/>
-	/// </summary>
-	/// <seealso cref="aceCommonTypes.primitives.imbBindable" />
-	public class modelSpiderTestRecord : modelRecordParentBase<ISpiderEvaluatorBase, spiderWeb, modelSpiderSiteRecord>, IModelSpiderGlobals
+    /// <summary>
+    /// Data model :: spider execution record for <see cref="testDefinition"/>
+    /// </summary>
+    /// <seealso cref="aceCommonTypes.primitives.imbBindable" />
+    public class modelSpiderTestRecord : modelRecordParentBase<ISpiderEvaluatorBase, spiderWeb, modelSpiderSiteRecord>, IModelSpiderGlobals
 	{
 
 		public aceDictionarySet<moduleIterationRecordSummary, DataTable> frontierDLCDataTables = new aceDictionarySet<moduleIterationRecordSummary, DataTable>();

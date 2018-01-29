@@ -38,14 +38,14 @@ namespace imbWEM.Core.crawler.evaluators
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -73,8 +73,8 @@ namespace imbWEM.Core.crawler.evaluators
     /// </summary>
     public class indexCrawler : spiderEvaluatorSimpleBase
     {
-        public indexCrawler(spiderUnit __parent) 
-            : base("IndexCrawler", "Special purpose crawler driven by the Global Page index data table - loads only pages that were not evaluated for relevance.", "indexCrawler.md", __parent, false)
+        public indexCrawler() 
+            : base("IndexCrawler", "Special purpose crawler driven by the Global Page index data table - loads only pages that were not evaluated for relevance.", "indexCrawler.md", false)
         {
             settings.FRONTIER_doLinkHarvest = false;
             settings.FRONTIER_doLinkResolver = false;

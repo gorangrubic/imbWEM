@@ -41,14 +41,14 @@ namespace imbWEM.Core.directReport
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.data;
@@ -85,7 +85,7 @@ namespace imbWEM.Core.directReport
 
     public class directAnalyticReporter : directReporterBase
     {
-        public directAnalyticReporter(string reportName, folderNode reportRootDir, aceAdvancedConsoleWorkspace __parent, aceAuthorNotation __notation) : base(reportName, reportRootDir, __parent, __notation)
+        public directAnalyticReporter(string reportName, folderNode reportRootDir,  aceAuthorNotation __notation) : base(reportName, reportRootDir, __notation)
         {
            if (imbWEMManager.settings.directReportEngine.doDomainReport) siteRecords = new folderNodeForInstances<modelSpiderSiteRecord>(folder[DRFolderEnum.sites], getSiteName);
             if (imbWEMManager.settings.directReportEngine.doIterationReport) iterationRecords = new folderNodeForInstances<int>(folder[DRFolderEnum.it], getIterationName);
@@ -651,7 +651,7 @@ Aggregate files describing performance of the crawler in general.
             
 
             signature.deployReport(tRecord);
-            signature.notation = notation;
+            //signature.notation = notation;
             signature.saveObjectToXML(folder.pathFor("signature.xml"));
 
             

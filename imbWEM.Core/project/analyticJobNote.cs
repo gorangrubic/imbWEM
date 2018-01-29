@@ -40,15 +40,15 @@ namespace imbWEM.Core.project
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -67,6 +67,7 @@ namespace imbWEM.Core.project
     using imbSCI.DataComplex.extensions.text;
     using imbSCI.DataComplex.special;
     using imbWEM.Core.console;
+    using imbWEM.Core.consolePlugin;
     using imbWEM.Core.crawler.engine;
     using imbWEM.Core.crawler.evaluators;
     using imbWEM.Core.crawler.model;
@@ -89,7 +90,7 @@ namespace imbWEM.Core.project
             folder = __folder;
         }
 
-        public void WriteAboutJob(analyticConsoleState state, analyticConsoleWorkspace workspace, analyticConsole console)
+        public void WriteAboutJob(ICrawlJobContext state, aceAdvancedConsoleWorkspace workspace, IAceAdvancedConsole console)
         {
             log(":: " + state.job.name + " ::");
             
@@ -105,15 +106,15 @@ namespace imbWEM.Core.project
 
             AppendLine("Sample size: " + state.sampleList.Count());
             
-            AppendLine("Sample subsets: " + state.sampleTags);
+           // AppendLine("Sample subsets: " + state.sampleTags);
             AppendLine("Sample block: " + state.aRecord.sampleBlockOrdinalNumber);
             AppendLine("Sample limit: " + state.aRecord.sampleTakeLimit);
-            AppendLine("Sample file name: " + state.sampleFile);
+            //AppendLine("Sample file name: " + state.sampleFile);
             AppendLine("Sample order hash: " + imbWEMManager.index.experimentEntry.SampleListHash);
 
 
             AppendLine("Index auto-preloaded: " + imbWEMManager.index.doAutoLoad);
-            AppendLine("Lexicon preloaded: " +semanticLexiconManager.lexiconCache.isLexiconPreloaded);
+            //AppendLine("Lexicon preloaded: " +semanticLexiconManager.lexiconCache.isLexiconPreloaded);
 
             AppendHorizontalLine();
             AppendLine("Run stamp: " + state.aRecord.testRunStamp);
@@ -164,7 +165,7 @@ namespace imbWEM.Core.project
 
         }
 
-        public void WriteAboutCrawlerRun(modelSpiderTestRecord tRecord, crawlerDomainTaskMachine cDTM, analyticConsoleState state)
+        public void WriteAboutCrawlerRun(modelSpiderTestRecord tRecord, crawlerDomainTaskMachine cDTM)
         {
             AppendHorizontalLine();
             AppendLine("Crawler name:           " + cDTM.tRecord.instance.name);
@@ -180,7 +181,7 @@ namespace imbWEM.Core.project
             var fileinfo = settings.saveStringToFile(
                 imbWEMManager.index.experimentEntry.sessionCrawlerFolder.pathFor(imbWEMManager.index.experimentEntry.SessionID.getFilename() + "_settings.xml").getWritableFile().FullName);
 
-            state.setupHash_crawler = hash;
+            //state.setupHash_crawler = hash;
 
             AppendLine("Crawler settings hash:  " + hash);
             AppendLine("Crawler complete hash:  " + tRecord.instance.crawlerHash);

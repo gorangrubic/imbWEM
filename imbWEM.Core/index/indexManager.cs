@@ -46,14 +46,14 @@ namespace imbWEM.Core.index
     using imbCommonModels.structure;
     using imbCommonModels.webPage;
     using imbNLP.Data;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.data;
@@ -75,6 +75,7 @@ namespace imbWEM.Core.index
     using imbSCI.DataComplex.special;
     using imbSCI.DataComplex.tables;
     using imbWEM.Core.console;
+    using imbWEM.Core.consolePlugin;
     using imbWEM.Core.crawler;
     using imbWEM.Core.crawler.evaluators;
     using imbWEM.Core.crawler.model;
@@ -244,7 +245,7 @@ namespace imbWEM.Core.index
         /// <param name="sessionId">The session identifier.</param>
         /// <param name="crawlId">The crawl identifier.</param>
         /// <returns></returns>
-        public indexPerformanceEntry StartSession(string crawlId, analyticConsoleState state)
+        public indexPerformanceEntry StartSession(string crawlId, ICrawlJobContext state =null)
         {
 
             indexSessionEntry = indexSessionRecords.GetOrCreate(DateTime.Now.ToShortDateString() + "-" + DateTime.Now.ToShortTimeString());
@@ -665,6 +666,9 @@ namespace imbWEM.Core.index
         /// <param name="wRecord">The w record.</param>
         public void deployWRecord(modelSpiderSiteRecord wRecord)
         {
+
+            return; // <--- tmp hack
+
             pageIndexTable.ReadOnlyMode = false;
 
             wRecord.indexDeployedMe = true;

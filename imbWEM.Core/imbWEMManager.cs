@@ -37,19 +37,20 @@ namespace imbWEM.Core
     using imbACE.Core.cache;
     using imbACE.Core.commands.menu;
     using imbACE.Core.core;
+    using imbACE.Core.data.mysql;
     using imbACE.Core.operations;
     using imbACE.Network.extensions;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbNLP.Data;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.data;
@@ -75,6 +76,7 @@ namespace imbWEM.Core
     using imbWEM.Core.crawler.targets;
     using imbWEM.Core.directReport;
     using imbWEM.Core.index;
+    using imbWEM.Core.loader;
     using imbWEM.Core.project;
     using imbWEM.Core.sampleGroup;
     using imbWEM.Core.stage;
@@ -285,26 +287,25 @@ namespace imbWEM.Core
         public static void prepare(analyticProject sciProject)
         {
             aceLog.consoleControl.setAsOutput(log, "analitic");
+
             // <----------------------- ova nebuloza ispod je zbog multithreadinga ---
             string tmp = "\\=".getCleanFilepath();
             tmp = tmp.getCleanFileName();
             tmp = tmp.getFilename("tmp");
             // <----------------------------------------------------------------------
 
-            if (sciProject != null)
-            {
-                
-              //  sciProject.afterFinalDeploy();
-
-            }
-
-            if (settings.supportEngine.doLanguagePrepareCall)  imbLanguageFrameworkManager.Prepare();
-
-            
+          
 
             settings.prepare();
 
+            imbLanguageFrameworkManager.Prepare();
 
+            loaderSubsystem.prepare();
+
+            imbSCI.Core.screenOutputControl.logToConsoleControl.setAsOutput(aceLog.loger.GetMainLogBuilder()); // tmp hack 
+
+            imbACE.Network.tools.systemKnowledge.prepare(null, log);
+            
 
             //imbSemanticEngine.imbSemanticEngineManager.prepare();
 
@@ -326,17 +327,11 @@ namespace imbWEM.Core
 
             md5.isCacheEnabled = settings.supportEngine.doChacheMD5;
 
-           // imbSemanticEngine.contentTree.contentTreeBuilder.doKeepLog = imbWEMManager.settings.executionLog.doKeepTreeBuilderLog;
 
             imbSCI.Reporting.script.docScriptAppendExtensions.doAllowExcelAttachments = settings.postReportEngine.reportBuildDoExcelExport;
             imbSCI.Reporting.script.docScriptAppendExtensions.doAllowJSONAttachments = settings.postReportEngine.reportBuildDoJSONExport;
 
 
-
-
-            //webProfileGroups.setGroupCounts(sciProject.mainWebProfiler.webSiteProfiles);
-
-            //webProfileGroups.describe(log);
 
             log.log("Index/home page filenames count: " + indexHtmlFilenames.Count);
             log.log("All index page filenames count: " + indexAllFilenames.Count);

@@ -39,14 +39,14 @@ namespace imbWEM.Core.crawler.evaluators.modular
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbNLP.Data;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -73,8 +73,8 @@ namespace imbWEM.Core.crawler.evaluators.modular
 
     public class SM_LTSD : spiderModularEvaluatorBase, ISpiderWithLanguageModule, ISpiderWithTemplateModule, ISpiderWithStructureModule, ISpiderWithDiversityModule
     {
-        public SM_LTSD(spiderUnit __parent)
-            : base("SM-LTSD", "SM crawler with Language, Template, Structure and Diversity frontier modules", "sm_ltsd.md", __parent)
+        public SM_LTSD()
+            : base("SM-LTSD", "SM crawler with Language, Template, Structure and Diversity frontier modules", "sm_ltsd.md")
         {
            
         }

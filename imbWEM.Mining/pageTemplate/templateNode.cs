@@ -60,13 +60,13 @@ using imbSCI.DataComplex.data.modelRecords;
 using imbSCI.DataComplex.extensions.data.formats;
 using imbSCI.DataComplex.extensions.text;
 using imbSCI.DataComplex.special;
-using imbWEM.Core.crawler.evaluators;
-using imbWEM.Core.crawler.model;
-using imbWEM.Core.crawler.modules.performance;
-using imbWEM.Core.crawler.rules.active;
-using imbWEM.Core.crawler.targets;
-using imbWEM.Core.directReport;
-using imbWEM.Core.stage;
+// using imbWEM.Core.crawler.evaluators;
+// using imbWEM.Core.crawler.model;
+// using imbWEM.Core.crawler.modules.performance;
+// using imbWEM.Core.crawler.rules.active;
+// using imbWEM.Core.crawler.targets;
+// using imbWEM.Core.directReport;
+// using imbWEM.Core.stage;
 
 namespace imbWEM.Mining.pageTemplate
 {
@@ -126,7 +126,7 @@ namespace imbWEM.Mining.pageTemplate
 
     #endregion
 
-    public class templateNode : imbProjectResourceBase
+    public class templateNode : imbBindable
     {
     }
 }

@@ -42,14 +42,14 @@ namespace imbWEM.Core.crawler.evaluators
     using imbACE.Services.terminal;
     using imbCommonModels.pageAnalytics.enums;
     using imbCommonModels.structure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.data;
@@ -137,12 +137,12 @@ namespace imbWEM.Core.crawler.evaluators
         /// <param name="__aboutfile">The aboutfile.</param>
         /// <param name="__parent">The parent.</param>
         /// <param name="__doTokenization">if set to <c>true</c> [do tokenization].</param>
-        public spiderEvaluatorBase(string __name, string __description, string __aboutfile, spiderUnit __parent)
+        public spiderEvaluatorBase(string __name, string __description, string __aboutfile)
         {
             name = __name;
             description = __description;
             aboutFilepath = __aboutfile;
-            parent = __parent;
+            
             plugins = new crawlerPlugInCollection(this);
         }
 
@@ -151,7 +151,7 @@ namespace imbWEM.Core.crawler.evaluators
 
         public ISpiderEvaluatorBase Clone(ILogBuilder loger=null)
         {
-            spiderEvaluatorBase output = GetType().getInstance(new object[] { parent }) as spiderEvaluatorBase;
+            spiderEvaluatorBase output = GetType().getInstance() as spiderEvaluatorBase;
             var changed = output.setObjectValueTypesBySource(this, loger);
             
             output.parent = parent;
@@ -243,6 +243,8 @@ namespace imbWEM.Core.crawler.evaluators
 
 
         protected bool setupCalled { get; set; }
+
+        public string instanceName { get { return name; }  set { name = value; } } 
 
         /// <summary>
         /// Setups all.

@@ -39,14 +39,14 @@ namespace imbWEM.Core.crawler
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbCommonModels.enums;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -274,7 +274,7 @@ namespace imbWEM.Core.crawler
 
 
 
-        private int _limitIterations = 10; //= default(Int32); // = new Int32();
+        private int _limitIterations = 50; //= default(Int32); // = new Int32();
         /// <summary>
         /// Maximum allowed spider iterations per web site profile
         /// </summary>
@@ -316,7 +316,7 @@ namespace imbWEM.Core.crawler
         }
 
 
-        private int _limitIterationNewLinks = 5; //= default(Int32); // = new Int32();
+        private int _limitIterationNewLinks = 1; //= default(Int32); // = new Int32();
                                                       /// <summary>
                                                       /// LoadTake - LT
                                                       /// </summary>

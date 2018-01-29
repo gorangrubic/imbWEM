@@ -60,13 +60,13 @@ using imbSCI.DataComplex.data.modelRecords;
 using imbSCI.DataComplex.extensions.data.formats;
 using imbSCI.DataComplex.extensions.text;
 using imbSCI.DataComplex.special;
-using imbWEM.Core.crawler.evaluators;
-using imbWEM.Core.crawler.model;
-using imbWEM.Core.crawler.modules.performance;
-using imbWEM.Core.crawler.rules.active;
-using imbWEM.Core.crawler.targets;
-using imbWEM.Core.directReport;
-using imbWEM.Core.stage;
+// using imbWEM.Core.crawler.evaluators;
+// using imbWEM.Core.crawler.model;
+// using imbWEM.Core.crawler.modules.performance;
+// using imbWEM.Core.crawler.rules.active;
+// using imbWEM.Core.crawler.targets;
+// using imbWEM.Core.directReport;
+// using imbWEM.Core.stage;
 
 namespace imbWEM.Mining.pageTemplate
 {
@@ -124,8 +124,10 @@ namespace imbWEM.Mining.pageTemplate
     using imbSCI.DataComplex.extensions.text;
     using imbSCI.DataComplex.special;
     using imbSCI.DataComplex.special;
+    using imbCommonModels.pageAnalytics.core;
+    using imbACE.Core.xml;
 
-//    using imbAPI.imbComplexDataTypes;
+    //    using imbAPI.imbComplexDataTypes;
 
     #endregion
 
@@ -150,7 +152,7 @@ namespace imbWEM.Mining.pageTemplate
 
             if (source.Length == 0)
             {
-                logSystem.log("No pages supplied for common tree detection!", logType.Warning);
+                logSystem.log("No pages supplied for common tree detection!", logType.FatalError);
                 return output;
             }
 
@@ -188,7 +190,7 @@ namespace imbWEM.Mining.pageTemplate
             //    }
             //}
 
-            logSystem.log("Pronađeno ukupno [" + output.Count() + "] elemenata", logType.Execution);
+            logSystem.log("Pronađeno ukupno [" + output.Count() + "] elemenata", logType.Notification);
 
             return output;
         }

@@ -42,15 +42,15 @@ namespace imbWEM.Core.crawler.evaluators
     using imbACE.Services.terminal;
     using imbCommonModels.webStructure;
     using imbNLP.Data;
-    using imbNLP.Data.basic;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.basic;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -75,6 +75,7 @@ namespace imbWEM.Core.crawler.evaluators
     using imbWEM.Core.crawler.targets;
     using imbWEM.Core.directReport;
     using imbWEM.Core.stage;
+    using imbNLP.Data.basic;
 
     /// <summary>
     /// base class for spider evaluator classes
@@ -141,20 +142,26 @@ namespace imbWEM.Core.crawler.evaluators
 
         }
 
+
+        protected spiderEvaluatorSimpleBase()
+        {
+
+        }
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="spiderEvaluatorSimpleBase"/> class.
+        /// Initializes a new instance of the <see cref="spiderEvaluatorSimpleBase" /> class.
         /// </summary>
         /// <param name="__name">The name.</param>
         /// <param name="__description">The description.</param>
         /// <param name="__aboutfile">The aboutfile.</param>
         /// <param name="__parent">The parent.</param>
-        /// <param name="__doTokenization">if set to <c>true</c> [do tokenization].</param>
-        public spiderEvaluatorSimpleBase(string __name, string __description, string __aboutfile, spiderUnit __parent, bool doTokenization) : base(__name, __description, __aboutfile, __parent)
+        /// <param name="doTokenization">if set to <c>true</c> [do tokenization].</param>
+        protected spiderEvaluatorSimpleBase(string __name, string __description, string __aboutfile, bool doTokenization) : base(__name, __description, __aboutfile)
         {
 
             if (doTokenization) settings.flags |= spiderEvaluatorExecutionFlags.doTokenization;
 
-            language = imbLanguageFrameworkManager.serbian.basic;
+            language = imbLanguageFrameworkManager.GetBasicLanguage(basicLanguageEnum.english);
         }
 
 
@@ -186,15 +193,14 @@ namespace imbWEM.Core.crawler.evaluators
 
             dataExtended.Add("language_native", language.languageNativeName, "Language native name", "Native name of the language used by the spider");
             dataExtended.Add("language_english", language.languageEnglishName, "Language english name", "English name of the language used by the spider");
-            dataExtended.Add("language_iso", language.iso2Code, "Language code", "Language ISO 2-letter code");
+            dataExtended.Add("language_iso", language.iso2code, "Language code", "Language ISO 2-letter code");
 
 
             return dataExtended;
         }
 
 
-        #region execution context
-
+       
 
         private basicLanguage _language;
         /// <summary>
@@ -205,7 +211,7 @@ namespace imbWEM.Core.crawler.evaluators
             get {
                 if (_language == null)
                 {
-                    return imbLanguageFrameworkManager.serbian.basic;
+                    return imbLanguageFrameworkManager.GetBasicLanguage(basicLanguageEnum.english);
                 }
                 return _language;
             }
@@ -220,8 +226,7 @@ namespace imbWEM.Core.crawler.evaluators
         }
 
 
-        #endregion
-
+     
 
 
         

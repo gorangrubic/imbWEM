@@ -46,18 +46,20 @@ namespace imbWEM.Core.crawler.targets
     using imbCommonModels.webPage;
     using imbCommonModels.webStructure;
     using imbNLP.Core.contentExtensions;
+    using imbNLP.Core.decomposing.html;
     using imbNLP.Core.textRetrive;
     using imbNLP.Data;
-    using imbNLP.Data.evaluate;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.evaluate;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
+    //using imbNLP.PartOfSpeech.decomposing.html;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.data;
@@ -185,7 +187,12 @@ namespace imbWEM.Core.crawler.targets
 
                     var r = rUrl.getTokens(true, false, true, true,1);
 
-                    r = semanticLexiconManager.lexiconCache.decodeTwins(r);
+                    if (semanticLexiconManager.lexiconCache != null)
+                    {
+
+                        r = semanticLexiconManager.lexiconCache.decodeTwins(r);
+
+                    }
 
                     var c = new List<string>();
 
@@ -451,11 +458,17 @@ namespace imbWEM.Core.crawler.targets
 
 
                     // <----- calling event
-                    var targs = new modelSpiderSiteRecordEventArgs(this);
-                    //targs.htmlDoc = htmlDoc;
-                    if (parent.wRecord.context.OnTargetPageAttached != null) parent.wRecord.context.OnTargetPageAttached(parent.wRecord, targs);
-
                     
+                    //targs.htmlDoc = htmlDoc;
+                    if (parent.wRecord.context.OnTargetPageAttached != null)
+                    {
+                        var targs = new modelSpiderSiteRecordEventArgs(this);
+
+                        parent.wRecord.context.OnTargetPageAttached(parent.wRecord, targs);
+
+                    }
+
+
 
                 }
 

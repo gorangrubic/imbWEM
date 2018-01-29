@@ -38,14 +38,14 @@ namespace imbWEM.Core.crawler.rules.layerRules
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -78,6 +78,7 @@ namespace imbWEM.Core.crawler.rules.layerRules
     /// <seealso cref="IRuleBase" />
     public abstract class layerDistributionRuleBase : spiderEvalRuleBase, IRuleBase
     {
+        public string instanceName { get { return name; } set { name = value; } }
 
         public layerDistributionRuleBase(string __name, string __description, int __layerID, ISpiderEvaluatorBase __parent, int __layer2ID=0) : base()
         {

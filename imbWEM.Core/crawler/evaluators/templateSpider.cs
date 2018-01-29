@@ -38,14 +38,14 @@ namespace imbWEM.Core.crawler.evaluators
     using imbACE.Core.operations;
     using imbACE.Services.console;
     using imbACE.Services.terminal;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -75,7 +75,7 @@ namespace imbWEM.Core.crawler.evaluators
     public class templateSpider:spiderEvaluatorSimpleBase
     {
         
-        public templateSpider(spiderUnit __parent):base("TemplateSpider", "Extracts template and focuses on links within.", "reportInclude\\testdocs\\templateSpider.md", __parent, true)
+        public templateSpider():base("TemplateSpider", "Extracts template and focuses on links within.", "reportInclude\\testdocs\\templateSpider.md", true)
         {
 
 

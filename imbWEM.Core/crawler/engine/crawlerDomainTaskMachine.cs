@@ -45,14 +45,14 @@ namespace imbWEM.Core.crawler.engine
     using imbACE.Services.console;
     using imbACE.Services.terminal;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -180,11 +180,18 @@ namespace imbWEM.Core.crawler.engine
 
         public performanceResources measureTaker;
 
+
+        public builderForLog logger { get; set; }
+
         public crawlerDomainTaskMachine(modelSpiderTestRecord __tRecord, List<webSiteProfile> sample, directAnalyticReporter __reporter, folderNode __folder)
         {
             reporter = __reporter;
             folder = __folder;
             tRecord = __tRecord;
+
+
+            logger = new builderForLog();
+            aceLog.consoleControl.setAsOutput(logger, tRecord.name);
 
             SetWebLoaderControler(__folder);
 
@@ -389,7 +396,7 @@ namespace imbWEM.Core.crawler.engine
                     Thread.Sleep(50);
                     crawlerDomainTask taskToRemove = null;
                     //items.running.TryTake(out taskToRemove);
-                    items.tRecord.log("[" + taskToRun.wProfile.domain + "] finished [tl:" + taskToRun.targetLoaded + "][td:" + taskToRun.targetDetected + "]");
+                    logger.log("[" + taskToRun.wProfile.domain + "] finished [tl:" + taskToRun.targetLoaded + "][td:" + taskToRun.targetDetected + "]");
                     items.done.AddUnique(taskToRun);
                     //changeTaskDone();
                     //changeTaskRunning(false);
@@ -416,16 +423,17 @@ namespace imbWEM.Core.crawler.engine
                 Thread.Sleep(50);
 
                 crawlerDomainTask taskToRemove = taskToRun;
-               // items.running.TryTake(out taskToRemove);
+               
                 
 
-                items.tRecord.log("[" + taskToRun.wProfile.domain + "] finished [tl:" + taskToRun.targetLoaded + "][td:" + taskToRun.targetDetected + "]");
+                logger.log("[" + taskToRun.wProfile.domain + "] finished [tl:" + taskToRun.targetLoaded + "][td:" + taskToRun.targetDetected + "]");
                 items.done.AddUnique(taskToRun);
             } catch (Exception ex)
             {
-                //taskToRun.isStageAborted = true;
+                
                 crawlerDomainTask taskToRemove = taskToRun;
-               // items.running.TryTake(out taskToRemove);
+               
+
                 items.done.AddUnique(taskToRun);
 
                 crawlerErrorLog clog = crawlerErrorLog.CreateAndSave(ex, taskToRun.wRecord, taskToRun, crawlerErrorEnum.domainOneTaskError);
@@ -629,7 +637,7 @@ namespace imbWEM.Core.crawler.engine
             reporter.signature = new crawlerSignature();
             reporter.signature.deployTaskMachine(this);
 
-          //  aceLog.consoleControl.setAsOutput(items.tRecord.logBuilder, items.tRecord.instance.name);
+          //  aceLog.consoleControl.setAsOutput(logger.logBuilder, items.tRecord.instance.name);
             startTime = DateTime.Now;
 
             items.tRecord.aRecord.tGeneralRecord.recordStart(items.tRecord.aRecord.testRunStamp, "spiderGeneralRecord::" + items.tRecord.instance.name);
@@ -774,7 +782,7 @@ namespace imbWEM.Core.crawler.engine
 
             // aceLog.log("[" + i + " / " + slimit + "] Spider[" + si + "][" + items.tRecord.instance.name + "]  [" + percent.ToString("P") + "]");
 
-           // aceLog.consoleControl.removeFromOutput(items.tRecord.logBuilder);
+           // aceLog.consoleControl.removeFromOutput(logger.logBuilder);
 
         }
 
@@ -792,8 +800,8 @@ namespace imbWEM.Core.crawler.engine
         public void Cancel()
         {
             isEnabled = false;
-            items.tRecord.log("Crawling terminated after [" + items.done.Count() + "] domains done (" + items.doneRatio.ToString("D2") + ")");
-            items.tRecord.log("Waiting for active threads to finish [" + activatedThreads.Count() + "] domains done (" + items.doneRatio.ToString("D2") + ")");
+            logger.log("Crawling terminated after [" + items.done.Count() + "] domains done (" + items.doneRatio.ToString("D2") + ")");
+            logger.log("Waiting for active threads to finish [" + activatedThreads.Count() + "] domains done (" + items.doneRatio.ToString("D2") + ")");
 
 
             items.TimeLimitForOneItemLoad = 0;
@@ -804,7 +812,7 @@ namespace imbWEM.Core.crawler.engine
                 if (th.IsAlive)
                 {
                     th.Join();
-                    items.tRecord.log("Thread [" + th.Name + "] finished");
+                    logger.log("Thread [" + th.Name + "] finished");
                 }
             }
             statusReport();
@@ -819,8 +827,8 @@ namespace imbWEM.Core.crawler.engine
 
 
             // aceLog.consoleControl.setAsOutput(items.tRecord);
-            items.tRecord.log("----------");
-            items.tRecord.logBuilder.consoleAltColorToggle();
+            logger.log("----------");
+          //  logger.logBuilder.consoleAltColorToggle();
 
             
 
@@ -832,9 +840,9 @@ namespace imbWEM.Core.crawler.engine
                 double minRun = DateTime.Now.Subtract(taskInRun.startTime).TotalMinutes;
           
                 
-                string fR = "[d:" + taskInRun.finishedRatio.ToString("P2") + "]";
-                string LbyD = "[" + taskInRun.targetLoaded + "/" + taskInRun.targetDetected + "]";
-                string TbyL = "[t:" + minRun.ToString("#0.00") + "/" + _timeLimitForDLC.ToString() + "]";
+                string fR = "[d: _" + taskInRun.finishedRatio.ToString("P2") + "_ ]";
+                string LbyD = "[ _" + taskInRun.targetLoaded + "/" + taskInRun.targetDetected + "_ ]";
+                string TbyL = "[t: _" + minRun.ToString("#0.00") + "/" + _timeLimitForDLC.ToString() + "_ ]";
 
                 string dom = "(initiating)";
 
@@ -860,13 +868,13 @@ namespace imbWEM.Core.crawler.engine
                 maxLatency = Math.Max(maxLatency, taskInRun.sinceLastIterationStart);
 
                 string form = "{0,40} {1,12} {2,12} {3,12} {4,10}";
-                items.tRecord.log(string.Format(form, dom, fR, LbyD, TbyL, "[a:" + taskInRun.sinceLastIterationStart.ToString("#0.00") + "]"));
+                logger.log(string.Format(form, dom, fR, LbyD, TbyL, "[a:" + taskInRun.sinceLastIterationStart.ToString("#0.00") + "]"));
             }
             
             double DRatio = (double)task_finished.Count() / (double)tasks.Count();
             double RRatio = (double)task_running.Count() / (double)tasks.Count();
             double WRatio = (1 - ((double)task_started.Count() / (double)tasks.Count()));
-            items.tRecord.log("--- " + items.tRecord.instance.name + " [w:" + WRatio.ToString("P2") + "] [d:" + DRatio.ToString("P2") + "]" + "] [r:" + RRatio.ToString("P2") + "]" + " [t:" + (DateTime.Now.Subtract(startTime).TotalMinutes.ToString("#0.00")) + "]");
+            logger.log("--- " + items.tRecord.instance.name + " [w: _" + WRatio.ToString("P2") + "_ ] [d: _" + DRatio.ToString("P2") + "_ ]" + "] [r: _" + RRatio.ToString("P2") + "_ ]" + " [t: _" + (DateTime.Now.Subtract(startTime).TotalMinutes.ToString("#0.00")) + "_ ]");
 
 
 
@@ -875,7 +883,7 @@ namespace imbWEM.Core.crawler.engine
 
 
 
-            items.tRecord.logBuilder.consoleAltColorToggle();
+           // logger.logBuilder.consoleAltColorToggle();
 
 
 

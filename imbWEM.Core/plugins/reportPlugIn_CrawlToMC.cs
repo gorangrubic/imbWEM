@@ -44,18 +44,19 @@ namespace imbWEM.Core.plugins
     using imbMiningContext.MCRepository;
     using imbMiningContext.MCWebPage;
     using imbMiningContext.MCWebSite;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
     using imbSCI.Core.extensions.text;
+    using imbSCI.Core.extensions.typeworks;
     using imbSCI.Core.files.fileDataStructure;
     using imbSCI.Core.files.folders;
     using imbSCI.Core.files.unit;
@@ -68,6 +69,7 @@ namespace imbWEM.Core.plugins
     using imbSCI.DataComplex.extensions.data.formats;
     using imbSCI.DataComplex.extensions.text;
     using imbSCI.DataComplex.special;
+    using imbWEM.Core.consolePlugin;
     using imbWEM.Core.crawler.engine;
     using imbWEM.Core.crawler.evaluators;
     using imbWEM.Core.crawler.model;
@@ -88,9 +90,31 @@ namespace imbWEM.Core.plugins
         {
         }
 
+        protected imbMCManager mcm { get; set; }
+
+        protected crawlJobPlugin wem { get; set; }
+
+        protected void prepareForScripting()
+        {
+            var props = consoleHost.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.DeclaredOnly);
+            foreach (var pi in props)
+            {
+                if (pi.PropertyType == typeof(crawlJobPlugin))
+                {
+                    wem = consoleHost.imbGetPropertySafe(pi, null) as crawlJobPlugin;
+                }
+
+                if (pi.PropertyType == typeof(imbMCManager))
+                {
+                    mcm = consoleHost.imbGetPropertySafe(pi, null) as imbMCManager;
+                }
+            }
+        }
+
+
         private void onTargetPageAttached(modelSpiderSiteRecord __wRecord, modelSpiderSiteRecordEventArgs __args)
         {
-            imbMCRepository mcRepo = console.analyticConsole.mainAnalyticConsole.MCManager.activeRepository;
+            imbMCRepository mcRepo = mcm.activeRepository;
             imbMCWebSite wRepo = webSiteReposByDomain[__wRecord.domain];
 
             ISpiderTarget target = __args.Target;
@@ -163,6 +187,7 @@ namespace imbWEM.Core.plugins
         public override void eventPluginInstalled()
         {
             IsEnabled = true;
+            prepareForScripting();
         }
 
         public override void eventIteration(ISpiderEvaluatorBase __spider, crawlerDomainTask __task, modelSpiderSiteRecord __wRecord)
@@ -180,13 +205,13 @@ namespace imbWEM.Core.plugins
 
         public override void eventDLCFinished(directReporterBase __spider, crawlerDomainTask __task, modelSpiderSiteRecord __wRecord)
         {
-            imbMCRepository mcRepo = console.analyticConsole.mainAnalyticConsole.MCManager.activeRepository;
+            imbMCRepository mcRepo = mcm.activeRepository;
             imbMCWebSite wRepo = webSiteReposByDomain[__wRecord.domain];
 
             mcRepo.siteTable.AddOrUpdate(wRepo.entry);
             wRepo.SaveDataStructure(mcRepo.folder, loger);
 
-            //  console.analyticConsole.mainAnalyticConsole.MCManager.activeRepository.BuildWebSite(__wRecord.context.targets, __wRecord.domainInfo, loger);
+          
 
         }
 
@@ -199,7 +224,9 @@ namespace imbWEM.Core.plugins
                 case crawlReportingStageEnum.DLCPreinitiation:
 
                     wRecord.context.OnTargetPageAttached += new modelSpiderSiteRecordEvent(onTargetPageAttached);
-                    imbMCRepository mcRepo = console.analyticConsole.mainAnalyticConsole.MCManager.activeRepository;
+
+                    imbMCRepository mcRepo = mcm.activeRepository;
+
                     imbMCWebSite wRepo = mcRepo.GetWebSite(wRecord.domainInfo, true, loger);
                     if (!webSiteReposByDomain.ContainsKey(wRecord.domain))
                     {

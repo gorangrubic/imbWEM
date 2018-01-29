@@ -45,14 +45,14 @@ namespace imbWEM.Core.crawler.targets
     using imbCommonModels.pageAnalytics.enums;
     using imbCommonModels.structure;
     using imbCommonModels.webStructure;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
     using imbSCI.Core.extensions.io;
@@ -247,15 +247,21 @@ namespace imbWEM.Core.crawler.targets
                 ln.url = ln.url.equalizeUrlWithIndexFilenames();
                 ln.url = wRecord.domainInfo.GetResolvedUrl(ln.url, imbWEMManager.settings.linkResolver.LNK_RemoveAnchors);
 
-                domainAnalysis da = new domainAnalysis(ln.url);
-
-                if (ln.url.IndexOf(da.domainName) > -1)
+                try
                 {
-                    int l = ln.url.Length - (ln.url.IndexOf(da.domainName) + da.domainName.Length);
-                    if (l == 1)
+                    domainAnalysis da = new domainAnalysis(ln.url);
+
+                    if (ln.url.IndexOf(da.domainName) > -1)
                     {
-                        ln.url = da.urlProper;
+                        int l = ln.url.Length - (ln.url.IndexOf(da.domainName) + da.domainName.Length);
+                        if (l == 1)
+                        {
+                            ln.url = da.urlProper;
+                        }
                     }
+                } catch (Exception ex)
+                {
+                    imbWEMManager.log.log("Process link exception: " + ex.Message);
                 }
             }
             #endregion ========================================================
@@ -352,7 +358,7 @@ namespace imbWEM.Core.crawler.targets
                     
 
                     // <-------------------------------------------------- instancira pGeneralRecord
-                    pGeneralRecord = wRecord.wGeneralRecord.children.GetRecord(pg.webpage, true);
+                   // pGeneralRecord = wRecord.wGeneralRecord.children.GetRecord(pg.webpage, true);
                 }
                 
                 cresult.target.targetedPage = pg; // <-------------------------------------------------------------------------------------------- upisuje u link referencu stranice

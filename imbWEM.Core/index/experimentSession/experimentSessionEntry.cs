@@ -43,16 +43,16 @@ namespace imbWEM.Core.index.experimentSession
     using imbACE.Services.terminal;
     using imbCommonModels.webPage;
     using imbNLP.Data;
-    using imbNLP.Data.evaluate;
-    using imbNLP.Data.extended.domain;
-    using imbNLP.Data.extended.unitex;
-    using imbNLP.Data.semanticLexicon;
-    using imbNLP.Data.semanticLexicon.core;
-    using imbNLP.Data.semanticLexicon.explore;
-    using imbNLP.Data.semanticLexicon.morphology;
-    using imbNLP.Data.semanticLexicon.procedures;
-    using imbNLP.Data.semanticLexicon.source;
-    using imbNLP.Data.semanticLexicon.term;
+using imbNLP.Data.evaluate;
+using imbNLP.Data.extended.domain;
+using imbNLP.Data.extended.unitex;
+using imbNLP.Data.semanticLexicon;
+using imbNLP.Data.semanticLexicon.core;
+using imbNLP.Data.semanticLexicon.explore;
+using imbNLP.Data.semanticLexicon.morphology;
+using imbNLP.Data.semanticLexicon.procedures;
+using imbNLP.Data.semanticLexicon.source;
+using imbNLP.Data.semanticLexicon.term;
     using imbNLP.Transliteration;
     using imbSCI.Core.attributes;
     using imbSCI.Core.collection;
@@ -76,6 +76,7 @@ namespace imbWEM.Core.index.experimentSession
     using imbSCI.DataComplex.special;
     using imbSCI.DataComplex.tables;
     using imbWEM.Core.console;
+    using imbWEM.Core.consolePlugin;
     using imbWEM.Core.crawler.engine;
     using imbWEM.Core.crawler.evaluators;
     using imbWEM.Core.crawler.model;
@@ -122,7 +123,7 @@ namespace imbWEM.Core.index.experimentSession
 
 
 
-        public void StartSession(string __CrawlID, indexPerformanceEntry __indexID, string __SessionID, analyticConsoleState __state)
+        public void StartSession(string __CrawlID, indexPerformanceEntry __indexID, string __SessionID, ICrawlJobContext __state)
         {
             CrawlID = __CrawlID;
             SessionID = __SessionID;
@@ -153,7 +154,7 @@ namespace imbWEM.Core.index.experimentSession
             }
 
             SampleRandomOrder = imbWEMManager.settings.crawlerJobEngine.doRandomizeSampleOrder;
-            SampleSource = state.sampleTags.add(state.sampleFile, ";");
+            //SampleSource = state.sampleTags.add(state.sampleFile, ";");
 
             SampleListHash = randomizeSample();
             
@@ -964,6 +965,6 @@ namespace imbWEM.Core.index.experimentSession
         public string ReportPath { get; set; } = default(string);
 
         [XmlIgnore]
-        public analyticConsoleState state { get; internal set; }
+        public ICrawlJobContext state { get; internal set; }
     }
 }
