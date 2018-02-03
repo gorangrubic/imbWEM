@@ -107,7 +107,7 @@ namespace imbWEM.Core.consolePlugin
             
             //output = newOutput;
 
-            imbSCI.Core.screenOutputControl.logToConsoleControl.setAsOutput(output, "CrawlJob");
+            imbSCI.Core.screenOutputControl.logToConsoleControl.setAsOutput(output, "WEM Plugin");
 
         }
 

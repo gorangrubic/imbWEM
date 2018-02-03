@@ -102,40 +102,40 @@
       <HintPath>..\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.8\lib\net40\imbACE.Core.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.14\lib\net40\imbACE.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Network, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.8\lib\net40\imbACE.Network.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.14\lib\net40\imbACE.Network.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Services, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.8\lib\net40\imbACE.Services.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.14\lib\net40\imbACE.Services.dll</HintPath>
     </Reference>
     <Reference Include="imbCommonModels, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbWEM.CommonData.0.1.2.15\lib\net40\imbCommonModels.dll</HintPath>
+      <HintPath>..\packages\imbWEM.CommonData.0.1.2.18\lib\net40\imbCommonModels.dll</HintPath>
     </Reference>
     <Reference Include="imbMiningContext, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbWEM.CommonData.0.1.2.15\lib\net40\imbMiningContext.dll</HintPath>
+      <HintPath>..\packages\imbWEM.CommonData.0.1.2.18\lib\net40\imbMiningContext.dll</HintPath>
     </Reference>
     <Reference Include="imbNLP.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbNLP.CoreAndData.NuGet1.0.1.2.7\lib\net40\imbNLP.Core.dll</HintPath>
+      <HintPath>..\packages\imbNLP.CoreAndData.NuGet1.0.1.2.10\lib\net40\imbNLP.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbNLP.Data, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbNLP.CoreAndData.NuGet1.0.1.2.7\lib\net40\imbNLP.Data.dll</HintPath>
+      <HintPath>..\packages\imbNLP.CoreAndData.NuGet1.0.1.2.10\lib\net40\imbNLP.Data.dll</HintPath>
     </Reference>
     <Reference Include="imbNLP.Transliteration, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\imbNLP.Transliteration.0.1.2.1\lib\net40\imbNLP.Transliteration.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Core, Version=0.1.6603.21539, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.24\lib\net40\imbSCI.Core.dll</HintPath>
+    <Reference Include="imbSCI.Core, Version=0.1.6608.19714, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.29\lib\net40\imbSCI.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbSCI.Data, Version=0.1.6603.21536, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.24\lib\net40\imbSCI.Data.dll</HintPath>
+      <HintPath>..\packages\imbSCI.0.1.2.29\lib\net40\imbSCI.Data.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.DataComplex, Version=0.1.6603.21541, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.24\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6608.19716, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.29\lib\net40\imbSCI.DataComplex.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Reporting, Version=0.1.6603.21543, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.24\lib\net40\imbSCI.Reporting.dll</HintPath>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6608.19716, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.29\lib\net40\imbSCI.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="LinqStatistics, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqStatistics.2.1.0\lib\net40\LinqStatistics.dll</HintPath>
